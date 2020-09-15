@@ -11,5 +11,5 @@ const districtSchema = new Schema({
         ref: 'Province'
     }
 },{timestamps:true})
-const district = model ('district',districtSchema,'district')
-export default district
+const District = model ('District',districtSchema,'District')
+export default District

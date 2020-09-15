@@ -19,6 +19,10 @@ const userController ={
         }=req.body
         try{
             const md5Password=genHash(password)
+            const check = await User.findOne({email})
+            if(check){
+                res.status(200).json('This e-mail already registered')
+            }else{
             const addUsers = new User({
                 picture,
                 firstName,
@@ -33,6 +37,7 @@ const userController ={
             })
             await addUsers.save()
             res.status(200).json({addUsers})
+            }
         }catch (e){
             throw new Error(e)
         }

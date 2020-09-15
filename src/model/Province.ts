@@ -6,5 +6,5 @@ const ProvinceSchema = new Schema({
         required: true
     }
 },{timestamps: true})
-const province = model('province', ProvinceSchema,'province')
-export default province
+const Province = model('Province', ProvinceSchema,'Province')
+export default Province
