@@ -1,7 +1,7 @@
 import passport from 'passport'
 import passportJWT from 'passport-jwt'
 import {Strategy as LocalStrategy } from 'passport-local'
-import Users from '../model/User'
+import Users from '@/model/User'
 import bcrypt from 'bcrypt'
 
 const JwtStrategy = passportJWT.Strategy
@@ -22,13 +22,13 @@ passport.deserializeUser((id,done)=>{
 })
 
 passport.use('adminSignIn', new LocalStrategy({
-    usernameField: 'mobile',
+    usernameField: 'email',
     passwordField: 'password',
-},async(mobile,password, done)=>{
+},async(email,password, done)=>{
     try{
-        const User: any = await Users.findOne({ type: 'admin', mobile })
+        const User: any = await Users.findOne({ email })
         if(!User){
-            return done(null,false,{message: 'Incorrect mobile'})
+            return done(null,false,{message: 'Incorrect email'})
         }
         const passwordMatch = bcrypt.compareSync(password, User.password)
         if(!passwordMatch){
@@ -46,7 +46,7 @@ passport.use('userSignIn', new LocalStrategy({
     passwordField: 'password',
 },async(email,password, done)=>{
     try{
-        const User: any = await Users.findOne({ type: 'admin', email })
+        const User: any = await Users.findOne({ email })
         if(!User){
             return done(null,false,{message: 'Incorrect email'})
         }

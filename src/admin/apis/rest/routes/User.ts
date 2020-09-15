@@ -4,6 +4,7 @@ import { adminSignIn } from '@/middlewares/auth'
 import userController from '../controllers/userController'
 
 const router: Router = Router()
+
 router.route('/create-user')
     .post(userController.addUser)
 router.route('/get-user')
@@ -14,5 +15,5 @@ router.route('/delete-user/:id')
     .delete(userController.deleteUser)
 
 router.route('/admin-sign-in')
-    .post(userController.adminSignIn)
+    .post(adminSignIn, userController.adminSignIn)
 export default router
