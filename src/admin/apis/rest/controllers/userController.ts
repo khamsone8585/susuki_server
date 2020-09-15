@@ -88,6 +88,11 @@ const userController ={
         }catch(err){
             throw new Error(err)
         }
+    },
+    adminSignIn:async(req: Request, res: Response)=>{
+        const user: any = req.user
+        const accessToken = signToken(user)
+        res.status(200).json({accessToken})
     }
 }
 export default userController

@@ -1,6 +1,5 @@
 import Jwt from 'jsonwebtoken'
 import User from '@/model/User'
-import { date } from 'yup'
 
 const secret: string = process.env.JWT_SECRET || 'khamsone'
 
