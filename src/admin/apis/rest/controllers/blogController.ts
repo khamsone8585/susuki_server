@@ -3,12 +3,13 @@ import Blogs from '@/model/Blog'
 
 const blogController = {
     addBlog: async(req: Request, res: Response)=>{
-        const{title,image,descriptions}=req.body
+        const{title,image,descriptions,CategoryId}=req.body
         try{
             const addBlogs = new Blogs({
                 title,
                 image,
-                descriptions
+                descriptions,
+                CategoryId
             })
             await addBlogs.save()
             res.status(200).json({addBlogs})
@@ -29,14 +30,16 @@ const blogController = {
             id,
             title,
             image,
-            descriptions
+            descriptions,
+            CategoryId
         }=req.body
         try{
             const updateBlogs = await Blogs.findByIdAndUpdate(id,{
                 $set:{
                     title,
                     image,
-                    descriptions
+                    descriptions,
+                    CategoryId
                 }
             },{runValidators: true, new:true})
             res.status(220).json({updateBlogs})

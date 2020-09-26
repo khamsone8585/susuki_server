@@ -17,7 +17,7 @@ import Mongo from '@/plugin/mongoose'
 // GenerateHTMLToPDF()
 
 class App {
-    static readonly PORT: number | string = process.env.PORT || 4000
+    static readonly PORT: number | string = process.env.PORT || 3000
     #app!: express.Application
     #httpServer!: http.Server
     #cors!: any

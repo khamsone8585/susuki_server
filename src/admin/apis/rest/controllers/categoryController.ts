@@ -5,12 +5,11 @@ const categoryController ={
     addCategory: async(req: Request,res: Response)=>{
         const {
             cateName,
-            UsersId
         }=req.body
         try{
+            if(!cateName) return res.status(400).json('Please Enter Category')
             const category = new Category({
                 cateName,
-                UsersId
             })
             await category.save()
             res.status(200).json({category})
@@ -20,7 +19,7 @@ const categoryController ={
     },
     getCategory:async(req: Request, res: Response)=>{
         try{
-            const getCategory = await Category.find().populate(['UsersId'])
+            const getCategory = await Category.find()
             res.status(200).json({getCategory})
         }catch(e){
             throw new Error(e)
