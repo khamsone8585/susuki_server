@@ -1,6 +1,7 @@
 import {Request, Response} from 'express'
 import products from '@/model/Products'
 import Category from '@/model/Category'
+import tag from '@/model/Tag'
 
 const productController ={
     addProducts : async(req: Request, res: Response)=>{
@@ -9,6 +10,7 @@ const productController ={
             images,
             name,
             price,
+            tagId,
             info
         }=req.body
         try{
@@ -17,6 +19,7 @@ const productController ={
             images,
             name,
             price,
+            tagId,
             info
         })
         await addProducts.save()
@@ -27,7 +30,7 @@ const productController ={
     },
     getProducts: async(req: Request, res: Response)=>{
         try{
-            const getProducts = await products.find().populate(['CategoryId'])
+            const getProducts = await products.find().populate(['CategoryId','tagId'])
             res.status(200).json({getProducts})
         }catch(e){
             throw new Error(e)
@@ -39,6 +42,7 @@ const productController ={
             images,
             name,
             price,
+            tagId,
             info
         }=req.body
         try{
@@ -47,9 +51,10 @@ const productController ={
                     images,
                     name,
                     price,
+                    tagId,
                     info
                 }
-            },{runValidators: true, new : true}).populate(['CategoryId'])
+            },{runValidators: true, new : true}).populate(['CategoryId','tagId'])
             res.status(220).json({updateProducts})
         }catch(e){
             throw new Error(e)

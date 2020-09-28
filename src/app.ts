@@ -63,7 +63,7 @@ class App {
         this.#app.use(this.#cors())
         this.#app.use(this.#jsonParser)
         this.#app.use(this.#urlencodedParser)
-        this.#app.use(express.static('tmp'))
+        this.#app.use(express.static('public'))
         this.#app.engine('handlebars', this.#expressHandlebars())
         this.#app.set('view engine', 'handlebars')
         this.#app.use(passport.initialize())

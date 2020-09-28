@@ -1,5 +1,6 @@
 import {Request, Response} from 'express'
 import Blogs from '@/model/Blog'
+import catBlog from '@/model/CategoryBlog'
 
 const blogController = {
     addBlog: async(req: Request, res: Response)=>{
@@ -19,7 +20,8 @@ const blogController = {
     },
     showBlog: async(req: Request, res: Response)=>{
         try{
-            const showBlogs = await Blogs.find()
+            const showBlogs = await Blogs.find().populate(['CategoryId'])
+            
             res.status(200).json({showBlogs})
         }catch(e){
             throw new Error(e)
@@ -39,9 +41,8 @@ const blogController = {
                     title,
                     image,
                     descriptions,
-                    CategoryId
                 }
-            },{runValidators: true, new:true})
+            },{runValidators: true, new:true}).populate(['CategoryId'])
             res.status(220).json({updateBlogs})
         }catch(e){
             throw new Error(e)

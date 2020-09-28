@@ -2,7 +2,7 @@ import {Router} from 'express'
 import categoryblog from '../controllers/catetogoryblogController'
 
 const router : Router = Router()
-router.route('/categoryblog')
+router.route('/create-categoryblog')
     .post(categoryblog.addCateBlog)
 router.route('/showcateblog')
     .get(categoryblog.getCateBlog)

@@ -9,10 +9,11 @@ const uploadImage = (req: Request, res: Response) =>{
     form.on('progress', (_bytesReceived, _bytesExpected)=>{})
     form.on('field',(_name, _file)=>{})
     form.on('fileBegin', (_name,file)=>{
-        if(!fs.existsSync('./tmp')) fs.mkdirSync('./tmp')
+        if(!fs.existsSync('./public/img')) fs.mkdirSync('./public/img')
         const fileType = '.' + file.name.split('.').pop()
         const fileName = uuidv4() + fileType
-        file.path = './tmp/' + fileName
+        file.path = './public/img/' + fileName
+        file.name = fileName
     })
     form.on('file', (_name, file)=>{
         if(file.size === 0) return res.status(413).json({message: 'Your file size is zero byte'})

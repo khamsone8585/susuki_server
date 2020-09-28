@@ -5,10 +5,10 @@ const productsSchema = new Schema({
         required: true,
         ref: 'Category'
     },
-    images: [{
+    images: {
         type: String,
         required: true
-    }],
+    },
     name: {
         type: String,
         required: true
@@ -16,6 +16,11 @@ const productsSchema = new Schema({
     price: {
         type: Number,
         required: true
+    },
+    tagId:{
+        type: Schema.Types.ObjectId,
+        required: true,
+        ref: 'tag'
     },
     info: [{
         _id: false,

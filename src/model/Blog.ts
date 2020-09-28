@@ -16,7 +16,7 @@ const BlogSchema = new Schema({
     CategoryId: {
         type: Schema.Types.ObjectId,
         required: true,
-        ref: 'Category'
+        ref: 'categoryBlog'
     }
 },{timestamps: true})
 const Blogs = model('Blogs', BlogSchema,'Blogs')
