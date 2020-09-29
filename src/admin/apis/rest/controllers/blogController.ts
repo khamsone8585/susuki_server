@@ -6,6 +6,7 @@ const blogController = {
     addBlog: async(req: Request, res: Response)=>{
         const{title,image,descriptions,CategoryId}=req.body
         try{
+            if(!title) return res.status(400).json('Please Enter Category')
             const addBlogs = new Blogs({
                 title,
                 image,

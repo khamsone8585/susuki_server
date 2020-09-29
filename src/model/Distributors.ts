@@ -1,17 +1,16 @@
 import {Schema , model } from 'mongoose'
 const distributorSchema =  new Schema({
+    images:{
+        type: String,
+        required: true
+    },
     distributor: {
         type: String,
         required: true
     },
-    Village: {
+    village: {
         type: String,
         required: true
-    },
-    DistrictId: {
-        type: Schema.Types.ObjectId,
-        required: true,
-        ref: 'District'
     },
     mobile: {
         type: Number,
@@ -30,7 +29,12 @@ const distributorSchema =  new Schema({
         type: Number,
         required: true
         }
-    }
+    },
+    districtId: {
+        type: Schema.Types.ObjectId,
+        required: true,
+        ref: 'District'
+    },
 },{timestamps:true})
-const distributors = model('distributors',distributorSchema,'distributors')
+const distributors = model('distributors',distributorSchema)
 export default distributors

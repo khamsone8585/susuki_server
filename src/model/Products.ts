@@ -1,6 +1,6 @@
 import {Schema, model} from 'mongoose'
 const productsSchema = new Schema({
-    CategoryId: {
+    categoryId: {
         type: Schema.Types.ObjectId,
         required: true,
         ref: 'Category'
@@ -21,6 +21,11 @@ const productsSchema = new Schema({
         type: Schema.Types.ObjectId,
         required: true,
         ref: 'tag'
+    },
+    specId:{
+        type: Schema.Types.ObjectId,
+        required: true,
+        ref: 'specProduct'
     },
     info: [{
         _id: false,

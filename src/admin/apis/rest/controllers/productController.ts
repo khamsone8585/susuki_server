@@ -2,24 +2,27 @@ import {Request, Response} from 'express'
 import products from '@/model/Products'
 import Category from '@/model/Category'
 import tag from '@/model/Tag'
+import specProducts from '@/model/specProducts'
 
 const productController ={
     addProducts : async(req: Request, res: Response)=>{
         const {
-            CategoryId,
+            categoryId,
             images,
             name,
             price,
             tagId,
+            specId,
             info
         }=req.body
         try{
         const addProducts =  new products({
-            CategoryId,
+            categoryId,
             images,
             name,
             price,
             tagId,
+            specId,
             info
         })
         await addProducts.save()
@@ -30,7 +33,7 @@ const productController ={
     },
     getProducts: async(req: Request, res: Response)=>{
         try{
-            const getProducts = await products.find().populate(['CategoryId','tagId'])
+            const getProducts = await products.find().populate(['categoryId','tagId','specId'])
             res.status(200).json({getProducts})
         }catch(e){
             throw new Error(e)
@@ -43,6 +46,7 @@ const productController ={
             name,
             price,
             tagId,
+            specId,
             info
         }=req.body
         try{
@@ -52,9 +56,10 @@ const productController ={
                     name,
                     price,
                     tagId,
+                    specId,
                     info
                 }
-            },{runValidators: true, new : true}).populate(['CategoryId','tagId'])
+            },{runValidators: true, new : true}).populate(['categoryId','tagId','specId'])
             res.status(220).json({updateProducts})
         }catch(e){
             throw new Error(e)

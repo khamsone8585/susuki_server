@@ -1,22 +1,26 @@
 import {Request, Response} from 'express'
-import District from '@/model/District'
+import District from '@/model/Di'
 import Distributor from '@/model/Distributors'
+
+require('../../../../model/Di')
 
 const distributorController ={
     addDistributor: async(req: Request, res: Response)=>{
         const{
+            images,
             distributor,
-            Village,
-            DistrictId,
+            village,
+            districtId,
             mobile,
             facebook,
             map
         }=req.body
         try{
             const distributors = new Distributor({
+                images,
                 distributor,
-                Village,
-                DistrictId,
+                village,
+                districtId,
                 mobile,
                 facebook,
                 map
@@ -29,7 +33,19 @@ const distributorController ={
     },
     getDistributor: async(req: Request , res: Response)=>{
         try{
-            const getDistributors = await Distributor.find().populate(['$districts._id'])
+            // const d = await District.findOne().populate('ProvinceId')
+            // console.log(d)
+            const getDistributors: any = await Distributor.find()
+            .populate({
+                path: 'districtId',
+                populate: 'provinceId'
+            })
+            // .populate({
+            //     path: 'DistrictId'
+            // })
+            
+            // console.log(getDistributors)
+
             res.status(200).json({getDistributors})
         }catch(e){
             throw new Error(e)
@@ -38,9 +54,10 @@ const distributorController ={
     updateDistributor: async(req: Request, res: Response)=>{
         const{
             id,
+            images,
             distributor,
-            Village,
-            DistrictId,
+            village,
+            districtId,
             mobile,
             facebook,
             map
@@ -48,14 +65,18 @@ const distributorController ={
         try{
             const updateDistributors = await Distributor.findByIdAndUpdate(id,{
                 $set:{
+                    images,
                     distributor,
-                    Village,
-                    DistrictId,
+                    village,
+                    districtId,
                     mobile,
                     facebook,
                     map
                 }
-            },{runValidators:true, new:true}).populate(['$districts._id'])
+            },{runValidators:true, new:true}).populate({
+                path: 'districtId',
+                populate: 'provinceId'
+            })
             res.status(220).json({updateDistributors})
         }catch(err){
             throw new Error(err)

@@ -5,11 +5,15 @@ const districtSchema = new Schema({
         type: String,
         required: true
     },
-    ProvinceId: {
+    provinceId: {
         type: Schema.Types.ObjectId,
         required: true,
         ref: 'Province'
     }
-},{timestamps:true})
-const District = model ('District',districtSchema,'District')
+}, {timestamps:true}) 
+
+
+const District = model('District', districtSchema, 'District')
+
+
 export default District

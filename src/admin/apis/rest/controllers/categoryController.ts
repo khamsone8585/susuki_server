@@ -1,5 +1,5 @@
 import {Request , Response} from 'express'
-import Category from '@/model/Category'
+import category from '@/model/Category'
 import User from '@/model/User'
 const categoryController ={
     addCategory: async(req: Request,res: Response)=>{
@@ -8,18 +8,18 @@ const categoryController ={
         }=req.body
         try{
             if(!cateName) return res.status(400).json('Please Enter Category')
-            const category = new Category({
+            const addCategorys = new category({
                 cateName,
             })
-            await category.save()
-            res.status(200).json({category})
+            await addCategorys.save()
+            res.status(200).json({addCategorys})
         }catch(e){
             throw new Error(e)
         }
     },
     getCategory:async(req: Request, res: Response)=>{
         try{
-            const getCategory = await Category.find()
+            const getCategory = await category.find()
             res.status(200).json({getCategory})
         }catch(e){
             throw new Error(e)
@@ -31,12 +31,12 @@ const categoryController ={
             cateName
         }=req.body
         try{
-            const updateCategory = await Category.findByIdAndUpdate(id,{
+            const updateCategorys = await category.findByIdAndUpdate(id,{
                 $set:{
                     cateName
                 }
-            },{runValidators:true, new :true}).populate(['UsersId'])
-            res.status(200).json({updateCategory})
+            },{runValidators:true, new :true}).populate(['usersId'])
+            res.status(200).json({updateCategorys})
         }catch(e){
             throw new Error(e)
         }
@@ -44,7 +44,7 @@ const categoryController ={
     deleteCategory: async(req: Request, res: Response)=>{
         const {id}=req.params
         try{
-            await Category.findByIdAndDelete(id)
+            await category.findByIdAndDelete(id)
             res.status(200).json('Delete Succeed')
         }catch(e){
             throw new Error(e)

@@ -29,7 +29,7 @@ const DataSetupSchema = new Schema({
         type: String,
         required: true
     },
-    DistrictId: {
+    districtId: {
         type: Schema.Types.ObjectId,
         required: true,
         ref: 'District'
