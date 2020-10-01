@@ -7,22 +7,14 @@ require('../../../../model/Di')
 const distributorController ={
     addDistributor: async(req: Request, res: Response)=>{
         const{
-            images,
-            distributor,
-            village,
             districtId,
-            mobile,
-            facebook,
+            distributor,
             map
         }=req.body
         try{
             const distributors = new Distributor({
-                images,
-                distributor,
-                village,
                 districtId,
-                mobile,
-                facebook,
+                distributor,
                 map
             })
             await distributors.save()
@@ -54,23 +46,15 @@ const distributorController ={
     updateDistributor: async(req: Request, res: Response)=>{
         const{
             id,
-            images,
-            distributor,
-            village,
             districtId,
-            mobile,
-            facebook,
+            distributor,
             map
         }=req.body
         try{
             const updateDistributors = await Distributor.findByIdAndUpdate(id,{
                 $set:{
-                    images,
-                    distributor,
-                    village,
                     districtId,
-                    mobile,
-                    facebook,
+                    distributor,
                     map
                 }
             },{runValidators:true, new:true}).populate({

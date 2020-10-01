@@ -2,27 +2,24 @@ import {Request, Response} from 'express'
 import products from '@/model/Products'
 import Category from '@/model/Category'
 import tag from '@/model/Tag'
-import specProducts from '@/model/specProducts'
 
 const productController ={
     addProducts : async(req: Request, res: Response)=>{
         const {
             categoryId,
-            images,
+            color_pic,
             name,
             price,
             tagId,
-            specId,
             info
         }=req.body
         try{
         const addProducts =  new products({
             categoryId,
-            images,
+            color_pic,
             name,
             price,
             tagId,
-            specId,
             info
         })
         await addProducts.save()
@@ -33,7 +30,7 @@ const productController ={
     },
     getProducts: async(req: Request, res: Response)=>{
         try{
-            const getProducts = await products.find().populate(['categoryId','tagId','specId'])
+            const getProducts = await products.find().populate(['categoryId','tagId'])
             res.status(200).json({getProducts})
         }catch(e){
             throw new Error(e)
@@ -42,24 +39,22 @@ const productController ={
     updateProducts: async(req: Request, res: Response)=>{
         const{
             id,
-            images,
+            color_pic,
             name,
             price,
             tagId,
-            specId,
             info
         }=req.body
         try{
             const updateProducts = await products.findByIdAndUpdate(id,{
                 $set:{
-                    images,
+                    color_pic,
                     name,
                     price,
                     tagId,
-                    specId,
                     info
                 }
-            },{runValidators: true, new : true}).populate(['categoryId','tagId','specId'])
+            },{runValidators: true, new : true}).populate(['categoryId','tagId'])
             res.status(220).json({updateProducts})
         }catch(e){
             throw new Error(e)

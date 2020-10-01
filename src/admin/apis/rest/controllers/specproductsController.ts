@@ -4,19 +4,11 @@ import specProduct from '@/model/specProducts'
 const specProductsController = {
     addSpec: async(req: Request, res: Response)=>{
         const {
-            machine,
-            fuel_oil,
-            brake,
-            tire,
-            gearshift
+            defaultSpec
         }=req.body
         try{
         const addSpecs = new specProduct({
-            machine,
-            fuel_oil,
-            brake,
-            tire,
-            gearshift
+            defaultSpec
         })
         await addSpecs.save()
         res.status(200).json({addSpecs})
@@ -26,7 +18,7 @@ const specProductsController = {
     },
     getSpec: async(req: Request, res: Response)=>{
         try{
-            const getSpecs = await specProduct.find()
+            const getSpecs = await specProduct.findOne()
             res.status(200).json({getSpecs}) 
         }catch(e){
             throw new Error(e)
@@ -35,20 +27,12 @@ const specProductsController = {
     updateSpec: async(req: Request, res: Response)=>{
         const{
             id,
-            machine,
-            fuel_oil,
-            brake,
-            tire,
-            gearshift
+            defaultSpec
         }=req.body
         try{
             const updateSpecs = await specProduct.findByIdAndUpdate(id,{
                 $set:{
-                    machine,
-                    fuel_oil,
-                    brake,
-                    tire,
-                    gearshift
+                    defaultSpec
                 }
             },{runValidators:true , new: true})
             res.status(200).json({updateSpecs})

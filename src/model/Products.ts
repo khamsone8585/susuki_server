@@ -5,10 +5,17 @@ const productsSchema = new Schema({
         required: true,
         ref: 'Category'
     },
-    images: {
-        type: String,
-        required: true
-    },
+    color_pic:[{
+            _id: false,
+            key: {
+            type: String,
+            required: true
+        },
+            value: {
+            type: String,
+            required: true
+        }
+    }],
     name: {
         type: String,
         required: true
@@ -22,18 +29,12 @@ const productsSchema = new Schema({
         required: true,
         ref: 'tag'
     },
-    specId:{
-        type: Schema.Types.ObjectId,
-        required: true,
-        ref: 'specProduct'
-    },
     info: [{
-        _id: false,
-        key: {
+    key: {
         type: String,
         required: true
     },
-        value: {
+    value: {
         type: String,
         required: true
     }

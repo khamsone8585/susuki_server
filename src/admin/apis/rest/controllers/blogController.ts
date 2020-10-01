@@ -4,14 +4,14 @@ import catBlog from '@/model/CategoryBlog'
 
 const blogController = {
     addBlog: async(req: Request, res: Response)=>{
-        const{title,image,descriptions,CategoryId}=req.body
+        const{title,image,descriptions,categoryId}=req.body
         try{
             if(!title) return res.status(400).json('Please Enter Category')
             const addBlogs = new Blogs({
                 title,
                 image,
                 descriptions,
-                CategoryId
+                categoryId
             })
             await addBlogs.save()
             res.status(200).json({addBlogs})
@@ -21,7 +21,7 @@ const blogController = {
     },
     showBlog: async(req: Request, res: Response)=>{
         try{
-            const showBlogs = await Blogs.find().populate(['CategoryId'])
+            const showBlogs = await Blogs.find().populate(['categoryId'])
             
             res.status(200).json({showBlogs})
         }catch(e){
@@ -34,7 +34,7 @@ const blogController = {
             title,
             image,
             descriptions,
-            CategoryId
+            categoryId
         }=req.body
         try{
             const updateBlogs = await Blogs.findByIdAndUpdate(id,{
@@ -43,7 +43,7 @@ const blogController = {
                     image,
                     descriptions,
                 }
-            },{runValidators: true, new:true}).populate(['CategoryId'])
+            },{runValidators: true, new:true}).populate(['categoryId'])
             res.status(220).json({updateBlogs})
         }catch(e){
             throw new Error(e)

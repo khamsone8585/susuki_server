@@ -13,7 +13,7 @@ const BlogSchema = new Schema({
         type: String,
         required: true
     },
-    CategoryId: {
+    categoryId: {
         type: Schema.Types.ObjectId,
         required: true,
         ref: 'categoryBlog'
