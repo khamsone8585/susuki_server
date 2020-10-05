@@ -12,6 +12,9 @@ import passport from './plugin/passport'
 import Mongo from './plugin/mongoose'
 import moduleAlias from 'module-alias'
 
+//every push and build == true
+//offline == false
+
 const isProd = true
 if (isProd) {
     moduleAlias.addAliases({
@@ -82,11 +85,11 @@ class App {
     }
 
     private createRouter(): void {
-        const routePath = __dirname + '/client/apis/rest/routes/'
-        fs.readdirSync(routePath).map((file: string) => {
-            const route = './client/apis/rest/routes/' + file
-            this.#app.use('/api', require(route).default)
-        })
+        // const routePath = __dirname + '/client/apis/rest/routes/'
+        // fs.readdirSync(routePath).map((file: string) => {
+        //     const route = './client/apis/rest/routes/' + file
+        //     this.#app.use('/api', require(route).default)
+        // })
         const routePaths = __dirname + '/admin/apis/rest/routes/'
         fs.readdirSync(routePaths).map((file: string) => {
             const route = './admin/apis/rest/routes/' + file
