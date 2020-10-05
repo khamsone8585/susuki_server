@@ -1,7 +1,7 @@
 import passport from 'passport'
 import passportJWT from 'passport-jwt'
 import {Strategy as LocalStrategy } from 'passport-local'
-import Users from '@/model/User'
+import Users from '../model/User'
 import bcrypt from 'bcrypt'
 
 const JwtStrategy = passportJWT.Strategy

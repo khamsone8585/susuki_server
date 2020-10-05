@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const passport_1 = __importDefault(require("passport"));
 const passport_jwt_1 = __importDefault(require("passport-jwt"));
 const passport_local_1 = require("passport-local");
-const User_1 = __importDefault(require("@/model/User"));
+const User_1 = __importDefault(require("../model/User"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const JwtStrategy = passport_jwt_1.default.Strategy;
 const ExtractJwt = passport_jwt_1.default.ExtractJwt;
