@@ -1,8 +1,4 @@
 {
-  "name": "default",
-  "_moduleAliases": {
-    "@": "src"
-  },
   "scripts": {
     "build": "tsc && tsc -p tsconfig.json",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -28,6 +24,7 @@
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
+    "path": "^0.12.7",
     "uuid": "^8.1.0",
     "uuidv4": "^6.2.3",
     "yup": "^0.29.1"
@@ -41,6 +38,7 @@
     "@types/formidable": "^1.0.31",
     "@types/jsonwebtoken": "^8.3.9",
     "@types/lodash": "^4.14.150",
+    "@types/module-alias": "^2.0.0",
     "@types/mongoose": "^5.7.30",
     "@types/node": "^13.13.5",
     "@types/nodemailer": "^6.4.0",

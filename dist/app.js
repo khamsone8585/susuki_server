@@ -25,12 +25,25 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const express_handlebars_1 = __importDefault(require("express-handlebars"));
 const http_1 = __importDefault(require("http"));
 const fs_1 = __importDefault(require("fs"));
+const path_1 = __importDefault(require("path"));
 const passport_1 = __importDefault(require("./plugin/passport"));
 const mongoose_1 = __importDefault(require("@/plugin/mongoose"));
+const module_alias_1 = __importDefault(require("module-alias"));
 //tslint:disable-next-line:no-var-requires
 // const os = require('os')
 // const myWifiIp = os.networkInterfaces().en0[1].address
 // GenerateHTMLToPDF()
+const isProd = true;
+if (isProd) {
+    module_alias_1.default.addAliases({
+        "@": path_1.default.join(__dirname, '/../dist')
+    });
+}
+else {
+    module_alias_1.default.addAliases({
+        "@": path_1.default.join(__dirname, '/../src')
+    });
+}
 class App {
     //  #corsOptions!: any
     constructor() {

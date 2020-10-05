@@ -7,15 +7,25 @@ import expressHandlebars from 'express-handlebars'
 import http from 'http'
 import {Request, Response} from 'express'
 import fs from 'fs'
+import path from 'path'
 import passport from './plugin/passport'
 import Mongo from '@/plugin/mongoose'
-
+import moduleAlias from 'module-alias'
 
 //tslint:disable-next-line:no-var-requires
 // const os = require('os')
 // const myWifiIp = os.networkInterfaces().en0[1].address
 // GenerateHTMLToPDF()
-
+const isProd = true
+if (isProd) {
+    moduleAlias.addAliases({
+        "@": path.join(__dirname, '/../dist')
+    })
+} else {
+    moduleAlias.addAliases({
+        "@": path.join(__dirname, '/../src')
+    })
+}
 class App {
     static readonly PORT: number | string = process.env.PORT || 3000
     #app!: express.Application
