@@ -7,7 +7,7 @@ const productController ={
     addProducts : async(req: Request, res: Response)=>{
         const {
             categoryId,
-            color_pic,
+            colorPic,
             name,
             price,
             tagId,
@@ -16,7 +16,7 @@ const productController ={
         try{
         const addProducts =  new products({
             categoryId,
-            color_pic,
+            colorPic,
             name,
             price,
             tagId,
@@ -39,7 +39,7 @@ const productController ={
     updateProducts: async(req: Request, res: Response)=>{
         const{
             id,
-            color_pic,
+            colorPic,
             name,
             price,
             tagId,
@@ -48,7 +48,7 @@ const productController ={
         try{
             const updateProducts = await products.findByIdAndUpdate(id,{
                 $set:{
-                    color_pic,
+                    colorPic,
                     name,
                     price,
                     tagId,
@@ -67,6 +67,15 @@ const productController ={
             res.status(200).json('Delete Succeed')
         }catch(e){
             throw new Error(e)
+        }
+    },
+    findIdProducts: async(req: Request, res: Response)=>{
+        const {id}=req.params
+        try{
+            const findId = await products.findById(id).populate(['categoryId','tagId'])
+            res.status(200).json(findId)
+        }catch(e){
+            throw new Error
         }
     }
 }

@@ -8,14 +8,22 @@ const distributorController ={
     addDistributor: async(req: Request, res: Response)=>{
         const{
             districtId,
-            distributor,
-            map
+            map,
+            image,
+            dealerCompany,
+            village,
+            telephone,
+            facebook
         }=req.body
         try{
             const distributors = new Distributor({
                 districtId,
-                distributor,
-                map
+                map,
+                image,
+                dealerCompany,
+                village,
+                telephone,
+                facebook
             })
             await distributors.save()
             res.status(200).json({distributors})
@@ -47,15 +55,23 @@ const distributorController ={
         const{
             id,
             districtId,
-            distributor,
-            map
+            map,
+            image,
+            dealerCompany,
+            village,
+            telephone,
+            facebook
         }=req.body
         try{
             const updateDistributors = await Distributor.findByIdAndUpdate(id,{
                 $set:{
                     districtId,
-                    distributor,
-                    map
+                    map,
+                    image,
+                    dealerCompany,
+                    village,
+                    telephone,
+                    facebook
                 }
             },{runValidators:true, new:true}).populate({
                 path: 'districtId',

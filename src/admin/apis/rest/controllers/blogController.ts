@@ -15,7 +15,7 @@ const blogController = {
             })
             await addBlogs.save()
             res.status(200).json({addBlogs})
-        }catch(e){
+        }catch(e){  
             throw new Error(e)
         }
     },
@@ -54,6 +54,15 @@ const blogController = {
         try{
             await Blogs.findByIdAndDelete(id)
             res.status(200).json('Delete Complete')
+        }catch(e){
+            throw new Error(e)
+        }
+    },
+    findIdBlog: async(req: Request, res: Response)=>{
+        const {id}=req.params
+        try{
+            const findIdBlogs = await Blogs.findById(id).populate(['categoryId'])
+            res.status(200).json(findIdBlogs)
         }catch(e){
             throw new Error(e)
         }

@@ -5,13 +5,12 @@ const productsSchema = new Schema({
         required: true,
         ref: 'Category'
     },
-    color_pic:[{
-            _id: false,
-            key: {
+    colorPic:[{
+            imageName: {
             type: String,
             required: true
         },
-            value: {
+            colorName: {
             type: String,
             required: true
         }

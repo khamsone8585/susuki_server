@@ -9,11 +9,8 @@ const userController ={
             picture,
             firstName,
             lastName,
-            gender,
-            status,
             email,
             password,
-            mobile
         }=req.body
         try{
             const md5Password=genHash(password)
@@ -25,11 +22,8 @@ const userController ={
                 picture,
                 firstName,
                 lastName,
-                gender,
-                status,
                 email,
                 password:md5Password,
-                mobile
             })
             await addUsers.save()
             res.status(200).json({addUsers})
@@ -53,11 +47,9 @@ const userController ={
             picture,
             firstName,
             lastName,
-            gender,
-            status,
             email,
             password,
-            mobile
+            
         }=req.body
         try{
             const updateUsers = await User.findByIdAndUpdate(id,{
@@ -65,11 +57,8 @@ const userController ={
                     picture,
                     firstName,
                     lastName,
-                    gender,
-                    status,
                     email,
                     password,
-                    mobile
                     }
                 },{ runValidators: true, new:true})
                 res.status(220).json({updateUsers})

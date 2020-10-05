@@ -8,24 +8,31 @@ const distributorSchema =  new Schema({
     map:[{
         lat: {
         type: Number,
-        required: true
         },
         lng: {
         type: Number,
-        required: true
         }
     }],
-    distributor:[{
-        _id: false,
-            key: {
-            type: String,
-            required: true
-        },
-        value: {
-            type: String,
-            required: true
-        }
-    }]
+    image:{
+        type: String,
+        required: true
+    },
+    dealerCompany:{
+        type: String,
+        required: true
+    },
+    village:{
+        type: String,
+        required: true
+    },
+    telephone:{
+        type: String,
+        required: true
+    },
+    facebook:{
+        type: String,
+        required: true
+    }
 },{timestamps:true})
 const distributors = model('distributors',distributorSchema)
 export default distributors

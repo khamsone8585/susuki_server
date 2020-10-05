@@ -10,4 +10,6 @@ router.route('/update-blog')
     .put(blogsController.updateBlog)
 router.route('/delete-blog/:id')
     .delete(blogsController.deleteBlog)
+router.route('/findId-blog/:id')
+    .get(blogsController.findIdBlog)
 export default router

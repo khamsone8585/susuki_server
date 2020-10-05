@@ -1,13 +1,15 @@
 import {Router} from 'express'
-import categoryblog from '../controllers/catetogoryblogController'
+import catetogoryblogController from '../controllers/catetogoryblogController'
 
 const router : Router = Router()
 router.route('/create-categoryblog')
-    .post(categoryblog.addCateBlog)
+    .post(catetogoryblogController.addCateBlog)
 router.route('/showcateblog')
-    .get(categoryblog.getCateBlog)
+    .get(catetogoryblogController.getCateBlog)
 router.route('/updatecateblog')
-    .put(categoryblog.updateCateBlog)
+    .put(catetogoryblogController.updateCateBlog)
 router.route('/deletecateblog/:id')
-    .delete(categoryblog.deleteCateBlog)
+    .delete(catetogoryblogController.deleteCateBlog)
+router.route('/findId-cateblog/:id')
+    .get(catetogoryblogController.findIdBlog)
 export default router

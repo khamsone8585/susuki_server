@@ -4,11 +4,11 @@ import specProduct from '@/model/specProducts'
 const specProductsController = {
     addSpec: async(req: Request, res: Response)=>{
         const {
-            defaultSpec
+            key
         }=req.body
         try{
         const addSpecs = new specProduct({
-            defaultSpec
+            key
         })
         await addSpecs.save()
         res.status(200).json({addSpecs})
@@ -18,7 +18,7 @@ const specProductsController = {
     },
     getSpec: async(req: Request, res: Response)=>{
         try{
-            const getSpecs = await specProduct.findOne()
+            const getSpecs = await specProduct.find()
             res.status(200).json({getSpecs}) 
         }catch(e){
             throw new Error(e)
@@ -27,12 +27,12 @@ const specProductsController = {
     updateSpec: async(req: Request, res: Response)=>{
         const{
             id,
-            defaultSpec
+            key
         }=req.body
         try{
             const updateSpecs = await specProduct.findByIdAndUpdate(id,{
                 $set:{
-                    defaultSpec
+                    key
                 }
             },{runValidators:true , new: true})
             res.status(200).json({updateSpecs})
