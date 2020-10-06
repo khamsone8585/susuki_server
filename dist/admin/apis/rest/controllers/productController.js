@@ -52,7 +52,7 @@ const productController = {
                     tagId,
                     info
                 }
-            }, { runValidators: true, new: true }).populate(['categoryId', 'tagId']);
+            }, { runValidators: true, new: true });
             res.status(220).json({ updateProducts });
         }
         catch (e) {
@@ -72,7 +72,7 @@ const productController = {
     findIdProducts: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const { id } = req.params;
         try {
-            const findId = yield Products_1.default.findById(id).populate(['categoryId', 'tagId']);
+            const findId = yield Products_1.default.findById(id);
             res.status(200).json(findId);
         }
         catch (e) {

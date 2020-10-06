@@ -54,7 +54,7 @@ const productController ={
                     tagId,
                     info
                 }
-            },{runValidators: true, new : true}).populate(['categoryId','tagId'])
+            },{runValidators: true, new : true})
             res.status(220).json({updateProducts})
         }catch(e){
             throw new Error(e)
@@ -72,7 +72,7 @@ const productController ={
     findIdProducts: async(req: Request, res: Response)=>{
         const {id}=req.params
         try{
-            const findId = await products.findById(id).populate(['categoryId','tagId'])
+            const findId = await products.findById(id)
             res.status(200).json(findId)
         }catch(e){
             throw new Error
