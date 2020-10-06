@@ -42,6 +42,7 @@ const blogController = {
                     title,
                     image,
                     descriptions,
+                    categoryId
                 }
             },{runValidators: true, new:true}).populate(['categoryId'])
             res.status(220).json({updateBlogs})
