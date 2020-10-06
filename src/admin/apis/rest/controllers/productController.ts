@@ -39,6 +39,7 @@ const productController ={
     updateProducts: async(req: Request, res: Response)=>{
         const{
             id,
+            categoryId,
             colorPic,
             name,
             price,
@@ -48,6 +49,7 @@ const productController ={
         try{
             const updateProducts = await products.findByIdAndUpdate(id,{
                 $set:{
+                    categoryId,
                     colorPic,
                     name,
                     price,

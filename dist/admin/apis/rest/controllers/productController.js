@@ -42,10 +42,11 @@ const productController = {
         }
     }),
     updateProducts: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        const { id, colorPic, name, price, tagId, info } = req.body;
+        const { id, categoryId, colorPic, name, price, tagId, info } = req.body;
         try {
             const updateProducts = yield Products_1.default.findByIdAndUpdate(id, {
                 $set: {
+                    categoryId,
                     colorPic,
                     name,
                     price,
