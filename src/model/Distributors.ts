@@ -34,5 +34,5 @@ const distributorSchema =  new Schema({
         required: true
     }
 },{timestamps:true})
-const distributors = model('distributors',distributorSchema)
+const distributors = model('distributors',distributorSchema,'distributors')
 export default distributors

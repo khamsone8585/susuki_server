@@ -82,6 +82,16 @@ const userController = {
         const user = req.user;
         const accessToken = jwt_1.signToken(user);
         res.status(200).json({ accessToken });
+    }),
+    findIdUser: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        const { id } = req.params;
+        try {
+            const findId = yield User_1.default.findById(id);
+            res.status(200).json(findId);
+        }
+        catch (e) {
+            throw new Error;
+        }
     })
 };
 exports.default = userController;

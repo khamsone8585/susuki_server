@@ -22,6 +22,6 @@ const userSchema = new Schema({
         required: true,
     }
 },{timestamps:true})
-const User = model('User', userSchema,'User')
+const users = model('user', userSchema,'user')
 
-export default User
+export default users

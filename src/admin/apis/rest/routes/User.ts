@@ -16,4 +16,6 @@ router.route('/delete-user/:id')
 
 router.route('/admin-sign-in')
     .post(adminSignIn, userController.adminSignIn)
+router.route('/findId-user/:id')
+    .get(userController.findIdUser)
 export default router

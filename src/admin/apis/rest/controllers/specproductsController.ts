@@ -48,6 +48,16 @@ const specProductsController = {
         }catch(e){
             throw new Error(e)
         }
+    },
+    findIdSpec: async(req: Request, res: Response)=>{
+        const {id}=req.params
+        try{
+            const findId = await specProduct.findById(id)
+            res.status(200).json(findId)
+        }catch(e){
+            throw new Error
+        }
     }
+    
 }
 export default specProductsController

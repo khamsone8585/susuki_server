@@ -10,4 +10,6 @@ router.route('/update-tag')
     .put(tagController.updateTag)
 router.route('/delete-tag/:id')
     .delete(tagController.deleteTag)
+router.route('/findId-tag/:id')
+    .get(tagController.findIdTag)
 export default router

@@ -10,4 +10,6 @@ router.route('/update-category')
     .put(categoryController.updateCategory)
 router.route('/delete-category/:id')
     .delete(categoryController.deleteCategory)
+router.route('/findId-category/:id')
+    .get(categoryController.findIdCategory)
 export default router

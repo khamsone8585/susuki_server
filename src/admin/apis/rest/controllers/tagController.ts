@@ -47,6 +47,15 @@ const tagController = {
         }catch(e){
             throw new Error(e)
         }
+    },
+    findIdTag: async(req: Request, res: Response)=>{
+        const {id}=req.params
+        try{
+            const findId = await tag.findById(id)
+            res.status(200).json(findId)
+        }catch(e){
+            throw new Error
+        }
     }
 }
 

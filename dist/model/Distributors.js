@@ -36,5 +36,5 @@ const distributorSchema = new mongoose_1.Schema({
         required: true
     }
 }, { timestamps: true });
-const distributors = mongoose_1.model('distributors', distributorSchema);
+const distributors = mongoose_1.model('distributors', distributorSchema, 'distributors');
 exports.default = distributors;

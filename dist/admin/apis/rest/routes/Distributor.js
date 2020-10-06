@@ -14,4 +14,6 @@ router.route('/update-distributor')
     .put(distributorController_1.default.updateDistributor);
 router.route('/delete-distributor/:id')
     .delete(distributorController_1.default.deleteDistributor);
+router.route('/findId-distributor/:id')
+    .get(distributorController_1.default.findIdsDistributor);
 exports.default = router;

@@ -85,6 +85,19 @@ const distributorController = {
         catch (e) {
             throw new Error(e);
         }
+    }),
+    findIdsDistributor: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        const { id } = req.params;
+        try {
+            const findId = yield Distributors_1.default.findById(id).populate({
+                path: 'districtId',
+                populate: 'provinceId'
+            });
+            res.status(200).json(findId);
+        }
+        catch (e) {
+            throw new Error;
+        }
     })
 };
 exports.default = distributorController;

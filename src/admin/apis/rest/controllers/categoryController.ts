@@ -49,6 +49,15 @@ const categoryController ={
         }catch(e){
             throw new Error(e)
         }
+    },
+    findIdCategory: async(req: Request, res: Response)=>{
+        const {id}=req.params
+        try{
+            const findId = await category.findById(id)
+            res.status(200).json(findId)
+        }catch(e){
+            throw new Error
+        }
     }
 }
 export default categoryController

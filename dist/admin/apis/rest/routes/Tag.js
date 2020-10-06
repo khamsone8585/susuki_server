@@ -14,4 +14,6 @@ router.route('/update-tag')
     .put(tagController_1.default.updateTag);
 router.route('/delete-tag/:id')
     .delete(tagController_1.default.deleteTag);
+router.route('/findId-tag/:id')
+    .get(tagController_1.default.findIdTag);
 exports.default = router;

@@ -1,6 +1,6 @@
 import {Request, Response} from 'express'
 import District from '@/model/Di'
-import Distributor from '@/model/Distributors'
+import distributor from '@/model/Distributors'
 
 require('../../../../model/Di')
 
@@ -16,7 +16,7 @@ const distributorController ={
             facebook
         }=req.body
         try{
-            const distributors = new Distributor({
+            const distributors = new distributor({
                 districtId,
                 map,
                 image,
@@ -35,7 +35,7 @@ const distributorController ={
         try{
             // const d = await District.findOne().populate('ProvinceId')
             // console.log(d)
-            const getDistributors: any = await Distributor.find()
+            const getDistributors: any = await distributor.find()
             .populate({
                 path: 'districtId',
                 populate: 'provinceId'
@@ -63,7 +63,7 @@ const distributorController ={
             facebook
         }=req.body
         try{
-            const updateDistributors = await Distributor.findByIdAndUpdate(id,{
+            const updateDistributors = await distributor.findByIdAndUpdate(id,{
                 $set:{
                     districtId,
                     map,
@@ -85,10 +85,22 @@ const distributorController ={
     deleteDistributor: async(req: Request, res: Response)=>{
         const{id}=req.params
         try{
-            await Distributor.findByIdAndDelete(id)
+            await distributor.findByIdAndDelete(id)
             res.status(200).json('Delete Complete')
         }catch(e){
             throw new Error(e)
+        }
+    },
+    findIdsDistributor: async(req: Request, res: Response)=>{
+        const {id}=req.params
+        try{
+            const findId = await distributor.findById(id).populate({
+                path: 'districtId',
+                populate: 'provinceId'
+            })
+            res.status(200).json(findId)
+        }catch(e){
+            throw new Error
         }
     }
 }

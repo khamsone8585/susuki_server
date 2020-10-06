@@ -61,6 +61,16 @@ const tagController = {
         catch (e) {
             throw new Error(e);
         }
+    }),
+    findIdTag: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        const { id } = req.params;
+        try {
+            const findId = yield Tag_1.default.findById(id);
+            res.status(200).json(findId);
+        }
+        catch (e) {
+            throw new Error;
+        }
     })
 };
 exports.default = tagController;

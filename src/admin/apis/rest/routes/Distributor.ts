@@ -10,4 +10,6 @@ router.route('/update-distributor')
     .put(distributorController.updateDistributor)
 router.route('/delete-distributor/:id')
     .delete(distributorController.deleteDistributor)
+router.route('/findId-distributor/:id')
+    .get(distributorController.findIdsDistributor)
 export default router

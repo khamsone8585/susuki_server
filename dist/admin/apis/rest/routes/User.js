@@ -17,4 +17,6 @@ router.route('/delete-user/:id')
     .delete(userController_1.default.deleteUser);
 router.route('/admin-sign-in')
     .post(auth_1.adminSignIn, userController_1.default.adminSignIn);
+router.route('/findId-user/:id')
+    .get(userController_1.default.findIdUser);
 exports.default = router;

@@ -10,4 +10,6 @@ router.route('/update-spec-products')
     .put(specProductsController.updateSpec)
 router.route('/delete-spec-products/:id')
     .delete(specProductsController.deleteSpec)
+router.route('/findId-spec-products/:id')
+    .get(specProductsController.findIdSpec)
 export default router

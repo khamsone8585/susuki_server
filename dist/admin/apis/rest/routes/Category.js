@@ -14,4 +14,6 @@ router.route('/update-category')
     .put(categoryController_1.default.updateCategory);
 router.route('/delete-category/:id')
     .delete(categoryController_1.default.deleteCategory);
+router.route('/findId-category/:id')
+    .get(categoryController_1.default.findIdCategory);
 exports.default = router;
