@@ -91,11 +91,11 @@ class App {
         });
     }
     createRouter() {
-        // const routePath = __dirname + '/client/apis/rest/routes/'
-        // fs.readdirSync(routePath).map((file: string) => {
-        //     const route = './client/apis/rest/routes/' + file
-        //     this.#app.use('/api', require(route).default)
-        // })
+        const routePath = __dirname + '/client/apis/rest/routes/';
+        fs_1.default.readdirSync(routePath).map((file) => {
+            const route = './client/apis/rest/routes/' + file;
+            __classPrivateFieldGet(this, _app).use('/client/api', require(route).default);
+        });
         const routePaths = __dirname + '/admin/apis/rest/routes/';
         fs_1.default.readdirSync(routePaths).map((file) => {
             const route = './admin/apis/rest/routes/' + file;

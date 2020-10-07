@@ -85,11 +85,11 @@ class App {
     }
 
     private createRouter(): void {
-        // const routePath = __dirname + '/client/apis/rest/routes/'
-        // fs.readdirSync(routePath).map((file: string) => {
-        //     const route = './client/apis/rest/routes/' + file
-        //     this.#app.use('/api', require(route).default)
-        // })
+        const routePath = __dirname + '/client/apis/rest/routes/'
+        fs.readdirSync(routePath).map((file: string) => {
+            const route = './client/apis/rest/routes/' + file
+            this.#app.use('/client/api', require(route).default)
+        })
         const routePaths = __dirname + '/admin/apis/rest/routes/'
         fs.readdirSync(routePaths).map((file: string) => {
             const route = './admin/apis/rest/routes/' + file
