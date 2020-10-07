@@ -12,11 +12,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const Products_1 = __importDefault(require("@/model/Products"));
+const Category_1 = __importDefault(require("@/model/Category"));
+const groupProducts_1 = __importDefault(require("@/pipes/groupProducts"));
 const productClient = {
     showProduct: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            const showProducts = yield Products_1.default.find().populate(['categoryId', 'tagId']);
+            const showProducts = yield Category_1.default.aggregate(groupProducts_1.default);
             res.status(200).json({ showProducts });
         }
         catch (e) {
