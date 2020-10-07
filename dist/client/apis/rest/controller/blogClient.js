@@ -18,7 +18,7 @@ const Blog_1 = __importDefault(require("@/model/Blog"));
 const blogClient = {
     showBlog: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            const showBlogs = yield Blog_1.default.find();
+            const showBlogs = yield Blog_1.default.find().populate(['categoryId']);
             res.status(200).json({ showBlogs });
         }
         catch (e) {

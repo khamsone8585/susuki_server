@@ -16,7 +16,7 @@ const Products_1 = __importDefault(require("@/model/Products"));
 const productClient = {
     showProduct: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            const showProducts = yield Products_1.default.find();
+            const showProducts = yield Products_1.default.find().populate(['categoryId', 'tagId']);
             res.status(200).json({ showProducts });
         }
         catch (e) {
