@@ -15,7 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const User_1 = __importDefault(require("@/model/User"));
 const bcrypt_1 = require("@/utils/bcrypt");
 const jwt_1 = require("@/utils/jwt");
-const bcrypt_2 = require("@/utils/bcrypt");
 const userController = {
     addUser: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const { picture, firstName, lastName, email, password, } = req.body;
@@ -52,26 +51,17 @@ const userController = {
         }
     }),
     updateUser: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        const { id, picture, firstName, lastName, email, password, newPassword } = req.body;
+        const { id, picture, firstName, lastName, email } = req.body;
         try {
-            const userChange = yield User_1.default.findById(id);
-            const isMatch = bcrypt_2.compareHash(password, userChange.password);
-            if (isMatch) {
-                const md5Password = bcrypt_1.genHash(newPassword);
-                const updateUsers = yield User_1.default.findByIdAndUpdate(id, {
-                    $set: {
-                        picture,
-                        firstName,
-                        lastName,
-                        email,
-                        password: md5Password,
-                    }
-                }, { runValidators: true, new: true });
-                res.status(200).json({ updateUsers });
-            }
-            else {
-                res.status(400).json('Password Wrong !!!');
-            }
+            const updateUsers = yield User_1.default.findByIdAndUpdate(id, {
+                $set: {
+                    picture,
+                    firstName,
+                    lastName,
+                    email
+                }
+            }, { runValidators: true, new: true });
+            res.status(200).json({ updateUsers });
         }
         catch (e) {
             res.status(400).json(e);

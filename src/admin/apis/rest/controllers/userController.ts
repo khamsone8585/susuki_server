@@ -48,28 +48,18 @@ const userController ={
             picture,
             firstName,
             lastName,
-            email,
-            password,
-            newPassword
+            email
         }=req.body
         try{
-            const userChange:any = await users.findById(id)
-            const isMatch = compareHash(password,userChange.password)
-            if(isMatch){
-            const md5Password=genHash(newPassword)
             const updateUsers = await users.findByIdAndUpdate(id,{
                 $set:{
                     picture,
                     firstName,
                     lastName,
-                    email,
-                    password:md5Password,
+                    email
                     }
                 },{ runValidators: true, new:true})
                 res.status(200).json({updateUsers})
-                }else{
-                    res.status(400).json('Password Wrong !!!')
-                }
             }catch(e){
                 res.status(400).json(e)
         }
