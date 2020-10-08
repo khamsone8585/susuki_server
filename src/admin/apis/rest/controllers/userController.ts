@@ -29,7 +29,7 @@ const userController ={
             res.status(200).json({addUsers})
             }
         }catch (e){
-            throw new Error(e)
+            res.status(400).json(e)
         }
     },
     // syntax Query data from mongo  
@@ -38,7 +38,7 @@ const userController ={
             const getUsers = await users.find()
             res.status(200).json({getUsers})
         }catch(e){
-            throw new Error(e)
+            res.status(400).json(e)
         }
     },
     updateUser: async(req: Request, res: Response) =>{
@@ -62,8 +62,8 @@ const userController ={
                     }
                 },{ runValidators: true, new:true})
                 res.status(220).json({updateUsers})
-            }catch(err){
-                throw new Error(err)
+            }catch(e){
+                res.status(400).json(e)
         }
     },
     deleteUser: async(req: Request, res: Response) =>{
@@ -71,8 +71,8 @@ const userController ={
         try{
             await users.findByIdAndDelete(id)
             res.status(200).json('Delete Success')
-        }catch(err){
-            throw new Error(err)
+        }catch(e){
+            res.status(400).json(e)
         }
     },
     adminSignIn:async(req: Request, res: Response)=>{
@@ -86,7 +86,7 @@ const userController ={
             const findId = await users.findById(id)
             res.status(200).json(findId)
         }catch(e){
-            throw new Error
+            res.status(400).json(e)
         }
     }
 }

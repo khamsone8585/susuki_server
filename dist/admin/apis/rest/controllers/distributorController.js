@@ -31,7 +31,7 @@ const distributorController = {
             res.status(200).json({ distributors });
         }
         catch (e) {
-            throw new Error(e);
+            res.status(400).json(e);
         }
     }),
     getDistributor: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -50,7 +50,7 @@ const distributorController = {
             res.status(200).json({ getDistributors });
         }
         catch (e) {
-            throw new Error(e);
+            res.status(400).json(e);
         }
     }),
     updateDistributor: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -83,7 +83,7 @@ const distributorController = {
             res.status(200).json('Delete Complete');
         }
         catch (e) {
-            throw new Error(e);
+            res.status(400).json(e);
         }
     }),
     findIdsDistributor: (req, res) => __awaiter(void 0, void 0, void 0, function* () {

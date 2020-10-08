@@ -12,7 +12,7 @@ const categoryBlogController = {
         await addCateBlogs.save()
         res.status(200).json({addCateBlogs})
         }catch(e){
-            throw new Error(e)
+            res.status(400).json(e)
         }
     },
     getCateBlog : async(req:Request, res: Response) =>{
@@ -20,7 +20,7 @@ const categoryBlogController = {
             const getCateBlog = await categoryBlog.find()
             res.status(200).json({getCateBlog}) 
         }catch(e){
-            throw new Error(e)
+            res.status(400).json(e)
         }
     },
     updateCateBlog : async(req: Request, res: Response) =>{
@@ -36,7 +36,7 @@ const categoryBlogController = {
             },{runValidators:true, new :true})
             res.status(200).json({updateCateBlogs})
         }catch(e){
-            throw new Error(e)
+            res.status(400).json(e)
         }
     },
     deleteCateBlog: async(req: Request, res: Response)=>{
@@ -45,7 +45,7 @@ const categoryBlogController = {
             await categoryBlog.findByIdAndDelete(id)
             res.status(200).json('Delete Success')
         }catch(e){
-            throw new Error(e)
+            res.status(400).json(e)
         }
     },
     findIdBlog: async(req: Request, res: Response)=>{
@@ -54,7 +54,7 @@ const categoryBlogController = {
             const findId = await categoryBlog.findById(id)
             res.status(200).json(findId)
         }catch(e){
-            throw new Error
+            res.status(400).json(e)
         }
     }
 }

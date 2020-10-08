@@ -37,7 +37,7 @@ const userController = {
             }
         }
         catch (e) {
-            throw new Error(e);
+            res.status(400).json(e);
         }
     }),
     // syntax Query data from mongo  
@@ -47,7 +47,7 @@ const userController = {
             res.status(200).json({ getUsers });
         }
         catch (e) {
-            throw new Error(e);
+            res.status(400).json(e);
         }
     }),
     updateUser: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -64,8 +64,8 @@ const userController = {
             }, { runValidators: true, new: true });
             res.status(220).json({ updateUsers });
         }
-        catch (err) {
-            throw new Error(err);
+        catch (e) {
+            res.status(400).json(e);
         }
     }),
     deleteUser: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -74,8 +74,8 @@ const userController = {
             yield User_1.default.findByIdAndDelete(id);
             res.status(200).json('Delete Success');
         }
-        catch (err) {
-            throw new Error(err);
+        catch (e) {
+            res.status(400).json(e);
         }
     }),
     adminSignIn: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -90,7 +90,7 @@ const userController = {
             res.status(200).json(findId);
         }
         catch (e) {
-            throw new Error;
+            res.status(400).json(e);
         }
     })
 };

@@ -26,7 +26,7 @@ const categoryBlogController = {
             res.status(200).json({ addCateBlogs });
         }
         catch (e) {
-            throw new Error(e);
+            res.status(400).json(e);
         }
     }),
     getCateBlog: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -35,7 +35,7 @@ const categoryBlogController = {
             res.status(200).json({ getCateBlog });
         }
         catch (e) {
-            throw new Error(e);
+            res.status(400).json(e);
         }
     }),
     updateCateBlog: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -49,7 +49,7 @@ const categoryBlogController = {
             res.status(200).json({ updateCateBlogs });
         }
         catch (e) {
-            throw new Error(e);
+            res.status(400).json(e);
         }
     }),
     deleteCateBlog: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -59,7 +59,7 @@ const categoryBlogController = {
             res.status(200).json('Delete Success');
         }
         catch (e) {
-            throw new Error(e);
+            res.status(400).json(e);
         }
     }),
     findIdBlog: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -69,7 +69,7 @@ const categoryBlogController = {
             res.status(200).json(findId);
         }
         catch (e) {
-            throw new Error;
+            res.status(400).json(e);
         }
     })
 };

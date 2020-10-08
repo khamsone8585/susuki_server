@@ -26,7 +26,7 @@ const categoryController = {
             res.status(200).json({ addCategorys });
         }
         catch (e) {
-            throw new Error(e);
+            res.status(400).json(e);
         }
     }),
     getCategory: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -35,7 +35,7 @@ const categoryController = {
             res.status(200).json({ getCategory });
         }
         catch (e) {
-            throw new Error(e);
+            res.status(400).json(e);
         }
     }),
     updateCategory: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -49,7 +49,7 @@ const categoryController = {
             res.status(200).json({ updateCategorys });
         }
         catch (e) {
-            throw new Error(e);
+            res.status(400).json(e);
         }
     }),
     deleteCategory: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -59,7 +59,7 @@ const categoryController = {
             res.status(200).json('Delete Succeed');
         }
         catch (e) {
-            throw new Error(e);
+            res.status(400).json(e);
         }
     }),
     findIdCategory: (req, res) => __awaiter(void 0, void 0, void 0, function* () {

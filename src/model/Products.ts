@@ -29,11 +29,9 @@ const productsSchema = new Schema({
     info: [{
     key: {
         type: String,
-        required: true
     },
     value: {
         type: String,
-        required: true
     }
     }]
 },{timestamps: true})

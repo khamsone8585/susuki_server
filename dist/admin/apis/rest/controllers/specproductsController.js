@@ -24,7 +24,7 @@ const specProductsController = {
             res.status(200).json({ addSpecs });
         }
         catch (e) {
-            throw new Error(e);
+            res.status(400).json(e);
         }
     }),
     getSpec: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -33,7 +33,7 @@ const specProductsController = {
             res.status(200).json({ getSpecs });
         }
         catch (e) {
-            throw new Error(e);
+            res.status(400).json(e);
         }
     }),
     updateSpec: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -47,7 +47,7 @@ const specProductsController = {
             res.status(200).json({ updateSpecs });
         }
         catch (e) {
-            throw new Error(e);
+            res.status(400).json(e);
         }
     }),
     deleteSpec: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -57,7 +57,7 @@ const specProductsController = {
             res.status(200).json('Delete Success');
         }
         catch (e) {
-            throw new Error(e);
+            res.status(400).json(e);
         }
     }),
     findIdSpec: (req, res) => __awaiter(void 0, void 0, void 0, function* () {

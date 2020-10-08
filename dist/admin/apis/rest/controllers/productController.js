@@ -29,7 +29,7 @@ const productController = {
             res.status(200).json({ addProducts });
         }
         catch (e) {
-            throw new Error(e);
+            res.status(400).json(e);
         }
     }),
     getProducts: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -38,7 +38,7 @@ const productController = {
             res.status(200).json({ getProducts });
         }
         catch (e) {
-            throw new Error(e);
+            res.status(400).json(e);
         }
     }),
     updateProducts: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -57,7 +57,7 @@ const productController = {
             res.status(220).json({ updateProducts });
         }
         catch (e) {
-            throw new Error(e);
+            res.status(400).json(e);
         }
     }),
     deleteProducts: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -67,7 +67,7 @@ const productController = {
             res.status(200).json('Delete Succeed');
         }
         catch (e) {
-            throw new Error(e);
+            res.status(400).json(e);
         }
     }),
     findIdProducts: (req, res) => __awaiter(void 0, void 0, void 0, function* () {

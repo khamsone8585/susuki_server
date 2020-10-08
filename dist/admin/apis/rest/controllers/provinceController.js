@@ -21,7 +21,7 @@ const provinceController = {
             res.status(200).json({ provinces });
         }
         catch (e) {
-            throw new Error(e);
+            res.status(400).json(e);
         }
     })
 };

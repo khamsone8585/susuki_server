@@ -25,7 +25,7 @@ const productController ={
         await addProducts.save()
         res.status(200).json({addProducts})
         }catch(e){
-            throw new Error(e)
+            res.status(400).json(e)
         }
     },
     getProducts: async(req: Request, res: Response)=>{
@@ -33,7 +33,7 @@ const productController ={
             const getProducts = await products.find().populate(['categoryId','tagId'])
             res.status(200).json({getProducts})
         }catch(e){
-            throw new Error(e)
+            res.status(400).json(e)
         }
     },
     updateProducts: async(req: Request, res: Response)=>{
@@ -59,7 +59,7 @@ const productController ={
             },{runValidators: true, new : true})
             res.status(220).json({updateProducts})
         }catch(e){
-            throw new Error(e)
+            res.status(400).json(e)
         }
     },
     deleteProducts: async(req: Request, res: Response)=>{
@@ -68,7 +68,7 @@ const productController ={
             await products.findByIdAndDelete(id)
             res.status(200).json('Delete Succeed')
         }catch(e){
-            throw new Error(e)
+            res.status(400).json(e)
         }
     },
     findIdProducts: async(req: Request, res: Response)=>{

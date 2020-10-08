@@ -16,7 +16,7 @@ const blogController = {
             await addBlogs.save()
             res.status(200).json({addBlogs})
         }catch(e){  
-            throw new Error(e)
+            res.status(400).json(e)
         }
     },
     showBlog: async(req: Request, res: Response)=>{
@@ -25,7 +25,7 @@ const blogController = {
             
             res.status(200).json({showBlogs})
         }catch(e){
-            throw new Error(e)
+            res.status(400).json(e)
         }
     },
     updateBlog: async(req: Request , res: Response)=>{
@@ -47,7 +47,7 @@ const blogController = {
             },{runValidators: true, new:true}).populate(['categoryId'])
             res.status(220).json({updateBlogs})
         }catch(e){
-            throw new Error(e)
+            res.status(400).json(e)
         }
     },
     deleteBlog: async(req: Request, res: Response)=>{
@@ -56,7 +56,7 @@ const blogController = {
             await Blogs.findByIdAndDelete(id)
             res.status(200).json('Delete Complete')
         }catch(e){
-            throw new Error(e)
+            res.status(400).json(e)
         }
     },
     findIdBlog: async(req: Request, res: Response)=>{
@@ -65,7 +65,7 @@ const blogController = {
             const findIdBlogs = await Blogs.findById(id).populate(['categoryId'])
             res.status(200).json(findIdBlogs)
         }catch(e){
-            throw new Error(e)
+            res.status(400).json(e)
         }
     }
 }

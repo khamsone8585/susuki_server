@@ -8,7 +8,7 @@ const provinceController ={
                 const provinces = await Province.aggregate(provincePipe)
                 res.status(200).json({provinces})
             }catch(e){
-                throw new Error(e)
+                res.status(400).json(e)
             }
     }
 }

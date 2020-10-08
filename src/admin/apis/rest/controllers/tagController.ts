@@ -12,7 +12,7 @@ const tagController = {
         await addTags.save()
         res.status(200).json({addTags})
         }catch(e){
-            throw new Error(e)
+            res.status(400).json(e)
         }
     },
     getTag: async(req:Request, res: Response)=>{
@@ -20,7 +20,7 @@ const tagController = {
             const getTags = await tag.find()
             res.status(200).json({getTags})
         }catch(e){
-            throw new Error(e)
+            res.status(400).json(e)
         }
     },
     updateTag: async(req:Request, res: Response)=>{
@@ -36,7 +36,7 @@ const tagController = {
             },{runValidators:true, new:true})
             res.status(220).json({updateTags})
         }catch(e){
-            throw new Error(e)
+            res.status(400).json(e)
         }
     },
     deleteTag: async(req: Request, res: Response)=>{
@@ -45,7 +45,7 @@ const tagController = {
             await tag.findByIdAndDelete(id)
             res.status(200).json('Delete Success')
         }catch(e){
-            throw new Error(e)
+            res.status(400).json(e)
         }
     },
     findIdTag: async(req: Request, res: Response)=>{

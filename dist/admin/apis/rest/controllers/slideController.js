@@ -12,65 +12,55 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const Tag_1 = __importDefault(require("@/model/Tag"));
-const tagController = {
-    addTag: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        const { tagName } = req.body;
+const slidebanner_1 = __importDefault(require("@/model/slidebanner"));
+const slideController = {
+    addSlide: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        const { image, url } = req.body;
         try {
-            if (!tagName)
-                return res.status(400).json('Please Enter Tag');
-            const addTags = new Tag_1.default({
-                tagName
+            const addSlides = new slidebanner_1.default({
+                image,
+                url
             });
-            yield addTags.save();
-            res.status(200).json({ addTags });
+            yield addSlides.save();
+            res.status(200).json({ addSlides });
         }
         catch (e) {
             res.status(400).json(e);
         }
     }),
-    getTag: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    getSlide: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            const getTags = yield Tag_1.default.find();
-            res.status(200).json({ getTags });
+            const getSlides = yield slidebanner_1.default.find();
+            res.status(200).json({ getSlides });
         }
         catch (e) {
             res.status(400).json(e);
         }
     }),
-    updateTag: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        const { id, tagName } = req.body;
+    updateSlide: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        const { id, image, url } = req.body;
         try {
-            const updateTags = yield Tag_1.default.findByIdAndUpdate(id, {
+            const updateSlides = yield slidebanner_1.default.findByIdAndUpdate(id, {
                 $set: {
-                    tagName
+                    image,
+                    url
                 }
             }, { runValidators: true, new: true });
-            res.status(220).json({ updateTags });
+            res.status(220).json({ updateSlides });
         }
         catch (e) {
             res.status(400).json(e);
         }
     }),
-    deleteTag: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    deleteSlide: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const { id } = req.params;
         try {
-            yield Tag_1.default.findByIdAndDelete(id);
+            yield slidebanner_1.default.findByIdAndDelete(id);
             res.status(200).json('Delete Success');
         }
         catch (e) {
             res.status(400).json(e);
         }
-    }),
-    findIdTag: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        const { id } = req.params;
-        try {
-            const findId = yield Tag_1.default.findById(id);
-            res.status(200).json(findId);
-        }
-        catch (e) {
-            throw new Error;
-        }
     })
 };
-exports.default = tagController;
+exports.default = slideController;

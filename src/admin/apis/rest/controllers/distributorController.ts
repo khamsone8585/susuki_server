@@ -28,7 +28,7 @@ const distributorController ={
             await distributors.save()
             res.status(200).json({distributors})
         }catch(e){
-            throw new Error(e)
+            res.status(400).json(e)
         }
     },
     getDistributor: async(req: Request , res: Response)=>{
@@ -48,7 +48,7 @@ const distributorController ={
 
             res.status(200).json({getDistributors})
         }catch(e){
-            throw new Error(e)
+            res.status(400).json(e)
         }
     },
     updateDistributor: async(req: Request, res: Response)=>{
@@ -88,7 +88,7 @@ const distributorController ={
             await distributor.findByIdAndDelete(id)
             res.status(200).json('Delete Complete')
         }catch(e){
-            throw new Error(e)
+            res.status(400).json(e)
         }
     },
     findIdsDistributor: async(req: Request, res: Response)=>{

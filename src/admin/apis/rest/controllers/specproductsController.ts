@@ -13,7 +13,7 @@ const specProductsController = {
         await addSpecs.save()
         res.status(200).json({addSpecs})
         }catch(e){
-        throw new Error(e)
+        res.status(400).json(e)
         }
     },
     getSpec: async(req: Request, res: Response)=>{
@@ -21,7 +21,7 @@ const specProductsController = {
             const getSpecs = await specProduct.find()
             res.status(200).json({getSpecs}) 
         }catch(e){
-            throw new Error(e)
+            res.status(400).json(e)
         }
     },
     updateSpec: async(req: Request, res: Response)=>{
@@ -37,7 +37,7 @@ const specProductsController = {
             },{runValidators:true , new: true})
             res.status(200).json({updateSpecs})
         }catch(e){
-            throw new Error(e)
+            res.status(400).json(e)
         }
     },
     deleteSpec: async(req: Request, res: Response)=>{
@@ -46,7 +46,7 @@ const specProductsController = {
             await specProduct.findByIdAndDelete(id)
             res.status(200).json('Delete Success')
         }catch(e){
-            throw new Error(e)
+            res.status(400).json(e)
         }
     },
     findIdSpec: async(req: Request, res: Response)=>{

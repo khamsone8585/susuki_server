@@ -14,7 +14,7 @@ const categoryController ={
             await addCategorys.save()
             res.status(200).json({addCategorys})
         }catch(e){
-            throw new Error(e)
+            res.status(400).json(e)
         }
     },
     getCategory:async(req: Request, res: Response)=>{
@@ -22,7 +22,7 @@ const categoryController ={
             const getCategory = await category.find()
             res.status(200).json({getCategory})
         }catch(e){
-            throw new Error(e)
+            res.status(400).json(e)
         }
     },
     updateCategory: async(req: Request, res: Response)=>{
@@ -38,7 +38,7 @@ const categoryController ={
             },{runValidators:true, new :true}).populate(['usersId'])
             res.status(200).json({updateCategorys})
         }catch(e){
-            throw new Error(e)
+            res.status(400).json(e)
         }
     },
     deleteCategory: async(req: Request, res: Response)=>{
@@ -47,7 +47,7 @@ const categoryController ={
             await category.findByIdAndDelete(id)
             res.status(200).json('Delete Succeed')
         }catch(e){
-            throw new Error(e)
+            res.status(400).json(e)
         }
     },
     findIdCategory: async(req: Request, res: Response)=>{
