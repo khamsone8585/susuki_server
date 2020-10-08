@@ -8,4 +8,6 @@ const productClient_1 = __importDefault(require("../controller/productClient"));
 const router = express_1.Router();
 router.route('/show-products-client')
     .get(productClient_1.default.showProduct);
+router.route('/find-products-client/:id')
+    .get(productClient_1.default.findIdProducts);
 exports.default = router;
