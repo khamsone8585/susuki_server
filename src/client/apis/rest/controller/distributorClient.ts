@@ -10,6 +10,16 @@ const distributorClient={
         }catch(e){
             throw new Error(e)
         }
+    },
+    findIdProducts: async(req: Request, res: Response)=>{
+        const {id}=req.params
+        try{
+            console.log(id)
+            const findId = await distributor.findById(id)
+            res.status(200).json(findId)
+        }catch(e){
+            throw new Error
+        }
     }
 }
 export default distributorClient

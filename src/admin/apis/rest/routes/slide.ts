@@ -11,4 +11,6 @@ router.route('/update-slide-banner')
     .put(slideController.updateSlide)
 router.route('/delete-slide-banner/:id')
     .delete(slideController.deleteSlide)
+router.route('/find-slide-banner/:id')
+    .get(slideController.findIdSlide)
 export default router

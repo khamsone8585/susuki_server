@@ -22,6 +22,17 @@ const distributorClient = {
         catch (e) {
             throw new Error(e);
         }
+    }),
+    findIdProducts: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        const { id } = req.params;
+        try {
+            console.log(id);
+            const findId = yield Distributors_1.default.findById(id);
+            res.status(200).json(findId);
+        }
+        catch (e) {
+            throw new Error;
+        }
     })
 };
 exports.default = distributorClient;

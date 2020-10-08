@@ -14,4 +14,6 @@ router.route('/update-slide-banner')
     .put(slideController_1.default.updateSlide);
 router.route('/delete-slide-banner/:id')
     .delete(slideController_1.default.deleteSlide);
+router.route('/find-slide-banner/:id')
+    .get(slideController_1.default.findIdSlide);
 exports.default = router;

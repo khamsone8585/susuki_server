@@ -61,6 +61,16 @@ const slideController = {
         catch (e) {
             res.status(400).json(e);
         }
+    }),
+    findIdSlide: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        const { id } = req.params;
+        try {
+            const findId = yield slidebanner_1.default.findById(id);
+            res.status(200).json({ findId });
+        }
+        catch (e) {
+            res.status(400).json(e);
+        }
     })
 };
 exports.default = slideController;

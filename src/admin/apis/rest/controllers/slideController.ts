@@ -45,6 +45,15 @@ const slideController = {
         }catch(e){
             res.status(400).json(e)
         }
+    },
+    findIdSlide: async(req:Request, res: Response)=>{
+        const {id}=req.params
+        try{
+            const findId = await slidebanner.findById(id)
+            res.status(200).json({findId})
+        }catch(e){
+            res.status(400).json(e)
+        }
     }
 }
 
