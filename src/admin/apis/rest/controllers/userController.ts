@@ -2,6 +2,7 @@ import {Request, Response} from 'express'
 import users from '@/model/User'
 import {genHash} from '@/utils/bcrypt'
 import {signToken} from '@/utils/jwt'
+import {compareHash} from '@/utils/bcrypt'
 
 const userController ={
     addUser: async(req: Request, res: Response) =>{
@@ -49,19 +50,26 @@ const userController ={
             lastName,
             email,
             password,
-            
+            newPassword
         }=req.body
         try{
+            const userChange:any = await users.findById(id)
+            const isMatch = compareHash(password,userChange.password)
+            if(isMatch){
+            const md5Password=genHash(newPassword)
             const updateUsers = await users.findByIdAndUpdate(id,{
                 $set:{
                     picture,
                     firstName,
                     lastName,
                     email,
-                    password,
+                    password:md5Password,
                     }
                 },{ runValidators: true, new:true})
-                res.status(220).json({updateUsers})
+                res.status(200).json({updateUsers})
+                }else{
+                    res.status(400).json('Password Wrong !!!')
+                }
             }catch(e){
                 res.status(400).json(e)
         }
