@@ -23,11 +23,9 @@ const productsSchema = new mongoose_1.Schema({
     },
     price: {
         type: Number,
-        required: true
     },
     tagId: {
         type: mongoose_1.Schema.Types.ObjectId,
-        required: true,
         ref: 'tag'
     },
     info: [{

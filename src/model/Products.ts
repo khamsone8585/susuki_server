@@ -21,11 +21,9 @@ const productsSchema = new Schema({
     },
     price: {
         type: Number,
-        required: true
     },
     tagId:{
         type: Schema.Types.ObjectId,
-        required: true,
         ref: 'tag'
     },
     info: [{
