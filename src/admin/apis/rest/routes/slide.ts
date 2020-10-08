@@ -9,6 +9,6 @@ router.route('/show-slide-banner')
     .get(slideController.getSlide)
 router.route('/update-slide-banner')
     .put(slideController.updateSlide)
-router.route('/delete-slide-banner')
+router.route('/delete-slide-banner/:id')
     .delete(slideController.deleteSlide)
 export default router
