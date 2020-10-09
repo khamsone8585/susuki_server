@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Products_1 = __importDefault(require("@/model/Products"));
 const productController = {
     addProducts: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        const { categoryId, colorPic, name, price, tagId, info } = req.body;
+        const { categoryId, colorPic, name, price, tagId, show, info } = req.body;
         try {
             const addProducts = new Products_1.default({
                 categoryId,
@@ -23,6 +23,7 @@ const productController = {
                 name,
                 price,
                 tagId,
+                show,
                 info
             });
             yield addProducts.save();
@@ -42,7 +43,7 @@ const productController = {
         }
     }),
     updateProducts: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        const { id, categoryId, colorPic, name, price, tagId, info } = req.body;
+        const { id, categoryId, colorPic, name, price, tagId, show, info } = req.body;
         try {
             const updateProducts = yield Products_1.default.findByIdAndUpdate(id, {
                 $set: {
@@ -51,6 +52,7 @@ const productController = {
                     name,
                     price,
                     tagId,
+                    show,
                     info
                 }
             }, { runValidators: true, new: true });

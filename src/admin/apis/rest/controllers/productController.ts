@@ -11,6 +11,7 @@ const productController ={
             name,
             price,
             tagId,
+            show,
             info
         }=req.body
         try{
@@ -20,6 +21,7 @@ const productController ={
             name,
             price,
             tagId,
+            show,
             info
         })
         await addProducts.save()
@@ -44,6 +46,7 @@ const productController ={
             name,
             price,
             tagId,
+            show,
             info
         }=req.body
         try{
@@ -54,6 +57,7 @@ const productController ={
                     name,
                     price,
                     tagId,
+                    show,
                     info
                 }
             },{runValidators: true, new : true})

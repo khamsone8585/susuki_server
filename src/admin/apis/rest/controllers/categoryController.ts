@@ -5,6 +5,7 @@ const categoryController ={
     addCategory: async(req: Request,res: Response)=>{
         const {
             cateName,
+            show
         }=req.body
         try{
             if(!cateName) return res.status(400).json('Please Enter Category')
@@ -28,7 +29,8 @@ const categoryController ={
     updateCategory: async(req: Request, res: Response)=>{
         const{
             id,
-            cateName
+            cateName,
+            show
         }=req.body
         try{
             const updateCategorys = await category.findByIdAndUpdate(id,{

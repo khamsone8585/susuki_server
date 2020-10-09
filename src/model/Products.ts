@@ -1,4 +1,5 @@
 import {Schema, model} from 'mongoose'
+import { boolean } from 'yup'
 const productsSchema = new Schema({
     categoryId: {
         type: Schema.Types.ObjectId,
@@ -21,6 +22,11 @@ const productsSchema = new Schema({
     },
     price: {
         type: Number,
+    },
+    show:{
+        type: Boolean,
+        default: true,
+        required: true
     },
     tagId:{
         type: Schema.Types.ObjectId,

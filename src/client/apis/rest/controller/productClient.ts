@@ -9,7 +9,18 @@ const productClient = {
     showProduct : async(req: Request , res: Response)=>{
         try{
             const showProducts = await Category.aggregate(productPipe)
-            res.status(200).json({showProducts})
+            const mapProducts = showProducts.map((i: any) =>{
+                const products = i.products.filter((o: any) => {
+                    if(!o._id) return 
+                    return o
+                })
+                console.log(products)
+                return {
+                    ...i,
+                products
+                }
+            })
+            res.status(200).json({mapProducts})
         }catch(e){
             throw new Error(e)
         }

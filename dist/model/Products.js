@@ -24,6 +24,11 @@ const productsSchema = new mongoose_1.Schema({
     price: {
         type: Number,
     },
+    show: {
+        type: Boolean,
+        default: true,
+        required: true
+    },
     tagId: {
         type: mongoose_1.Schema.Types.ObjectId,
         ref: 'tag'

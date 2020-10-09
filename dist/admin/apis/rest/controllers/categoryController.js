@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Category_1 = __importDefault(require("@/model/Category"));
 const categoryController = {
     addCategory: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        const { cateName, } = req.body;
+        const { cateName, show } = req.body;
         try {
             if (!cateName)
                 return res.status(400).json('Please Enter Category');
@@ -39,7 +39,7 @@ const categoryController = {
         }
     }),
     updateCategory: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        const { id, cateName } = req.body;
+        const { id, cateName, show } = req.body;
         try {
             const updateCategorys = yield Category_1.default.findByIdAndUpdate(id, {
                 $set: {

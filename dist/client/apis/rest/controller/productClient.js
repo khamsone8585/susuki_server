@@ -19,7 +19,16 @@ const productClient = {
     showProduct: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             const showProducts = yield Category_1.default.aggregate(groupProducts_1.default);
-            res.status(200).json({ showProducts });
+            const mapProducts = showProducts.map((i) => {
+                const products = i.products.filter((o) => {
+                    if (!o._id)
+                        return;
+                    return o;
+                });
+                console.log(products);
+                return Object.assign(Object.assign({}, i), { products });
+            });
+            res.status(200).json({ mapProducts });
         }
         catch (e) {
             throw new Error(e);
