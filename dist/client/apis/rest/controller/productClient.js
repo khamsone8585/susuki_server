@@ -21,7 +21,7 @@ const productClient = {
             const showProducts = yield Category_1.default.aggregate(groupProducts_1.default);
             const mapProducts = showProducts.map((i) => {
                 const products = i.products.filter((o) => {
-                    if (!o._id || !o.show)
+                    if (!o._id || o.show)
                         return;
                     return o;
                 });
