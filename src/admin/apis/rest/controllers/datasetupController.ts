@@ -54,7 +54,7 @@ const dataSetupController={
                     address,
                     moreInformation
                 }
-            },{runValidators:true, new:true}).populate(['$districts._id'])
+            },{runValidators:true, new:true})
             res.status(220).json({updateDataset})
         }catch(e){
             throw new Error(e)
