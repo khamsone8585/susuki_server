@@ -11,7 +11,7 @@ exports.default = [
     }, {
         '$unwind': {
             'path': '$products',
-            'preserveNullAndEmptyArrays': true
+            'preserveNullAndEmptyArrays': false
         }
     }, {
         '$lookup': {
@@ -23,7 +23,7 @@ exports.default = [
     }, {
         '$unwind': {
             'path': '$products.tag',
-            'preserveNullAndEmptyArrays': true
+            'preserveNullAndEmptyArrays': false
         }
     }, {
         '$group': {
