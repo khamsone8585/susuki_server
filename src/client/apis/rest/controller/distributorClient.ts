@@ -16,7 +16,7 @@ const distributorClient={
         try{
             console.log(id)
             const findId = await distributor.findById(id)
-            res.status(200).json(findId)
+            res.status(200).json({findId})
         }catch(e){
             throw new Error
         }

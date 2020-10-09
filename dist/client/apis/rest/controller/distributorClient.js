@@ -28,7 +28,7 @@ const distributorClient = {
         try {
             console.log(id);
             const findId = yield Distributors_1.default.findById(id);
-            res.status(200).json(findId);
+            res.status(200).json({ findId });
         }
         catch (e) {
             throw new Error;

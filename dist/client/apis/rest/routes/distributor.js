@@ -8,6 +8,6 @@ const distributorClient_1 = __importDefault(require("../controller/distributorCl
 const router = express_1.Router();
 router.route('/show-distributor-client')
     .get(distributorClient_1.default.showDistributor);
-router.route('/find-distributor-client')
+router.route('/find-distributor-client/:id')
     .get(distributorClient_1.default.findIdProducts);
 exports.default = router;

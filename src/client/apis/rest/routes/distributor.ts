@@ -4,6 +4,6 @@ import distributorClient from '../controller/distributorClient'
 const router: Router = Router()
 router.route('/show-distributor-client')
     .get(distributorClient.showDistributor)
-router.route('/find-distributor-client')
+router.route('/find-distributor-client/:id')
     .get(distributorClient.findIdProducts)
 export default router
