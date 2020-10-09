@@ -11,7 +11,7 @@ const productClient = {
             const showProducts = await Category.aggregate(productPipe)
             const mapProducts = showProducts.map((i: any) =>{
                 const products = i.products.filter((o: any) => {
-                    if(!o._id || o.show) return 
+                    if(!o._id || !o.show) return 
                     return o
                 })
                 return {
