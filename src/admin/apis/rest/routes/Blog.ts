@@ -12,4 +12,6 @@ router.route('/delete-blog/:id')
     .delete(blogsController.deleteBlog)
 router.route('/findId-blog/:id')
     .get(blogsController.findIdBlog)
+router.route('/get-limit-products/:page/:perPage')
+    .get(blogsController.getLimitBlog)
 export default router

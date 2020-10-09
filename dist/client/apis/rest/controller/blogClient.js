@@ -35,6 +35,36 @@ const blogClient = {
         catch (e) {
             throw new Error;
         }
+    }),
+    getLimitBlogClient: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        const page = parseInt(req.params.page, 10);
+        const perPage = parseInt(req.params.perPage, 5);
+        try {
+            const Products = yield Blog_1.default.find()
+                .skip((page * perPage) - perPage)
+                .limit(perPage)
+                .populate(['categoryId']);
+            const counts = yield Blog_1.default.find().countDocuments();
+            res.status(200).json({ Products, counts });
+        }
+        catch (e) {
+            throw new Error(e);
+        }
+    }),
+    getLimitBlog: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        const page = parseInt(req.params.page, 10);
+        const perPage = parseInt(req.params.perPage, 5);
+        try {
+            const Blog = yield Blog_1.default.find()
+                .skip((page * perPage) - perPage)
+                .limit(perPage)
+                .populate(['categoryId']);
+            const counts = yield Blog_1.default.find().countDocuments();
+            res.status(200).json({ Blog, counts });
+        }
+        catch (e) {
+            throw new Error(e);
+        }
     })
 };
 //export file controller

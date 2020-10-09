@@ -21,11 +21,10 @@ const productClient = {
             const showProducts = yield Category_1.default.aggregate(groupProducts_1.default);
             const mapProducts = showProducts.map((i) => {
                 const products = i.products.filter((o) => {
-                    if (!o._id)
+                    if (!o._id || !o.show)
                         return;
                     return o;
                 });
-                console.log(products);
                 return Object.assign(Object.assign({}, i), { products });
             });
             res.status(200).json({ mapProducts });
@@ -43,6 +42,21 @@ const productClient = {
         }
         catch (e) {
             throw new Error;
+        }
+    }),
+    getLimitProducts: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        const page = parseInt(req.params.page, 10);
+        const perPage = parseInt(req.params.perPage, 5);
+        try {
+            const Products = yield Products_1.default.find()
+                .skip((page * perPage) - perPage)
+                .limit(perPage)
+                .populate(['categoryId', 'tagId']);
+            const counts = yield Products_1.default.find().countDocuments();
+            res.status(200).json({ Products, counts });
+        }
+        catch (e) {
+            throw new Error(e);
         }
     })
 };

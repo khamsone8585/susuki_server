@@ -11,10 +11,9 @@ const productClient = {
             const showProducts = await Category.aggregate(productPipe)
             const mapProducts = showProducts.map((i: any) =>{
                 const products = i.products.filter((o: any) => {
-                    if(!o._id) return 
+                    if(!o._id || !o.show) return 
                     return o
                 })
-                console.log(products)
                 return {
                     ...i,
                 products
@@ -33,6 +32,20 @@ const productClient = {
             res.status(200).json(findId)
         }catch(e){
             throw new Error
+        }
+    },
+    getLimitProducts: async(req: Request, res: Response)=>{
+        const page = parseInt(req.params.page, 10)
+        const perPage = parseInt(req.params.perPage, 5)
+        try{
+            const Products = await product.find()
+            .skip((page * perPage) - perPage)
+            .limit(perPage)
+            .populate(['categoryId','tagId'])
+            const counts=await product.find().countDocuments()
+        res.status(200).json({Products, counts})
+        }catch(e){
+            throw new Error(e)
         }
     }
 }

@@ -13,4 +13,6 @@ router.route('/delete-products/:id')
     .delete(productController.deleteProducts)
 router.route('/findId-products/:id')
     .get(productController.findIdProducts)
+router.route('/get-limit-products/:page/:perPage')
+    .get(productController.getLimitProducts)
 export default router

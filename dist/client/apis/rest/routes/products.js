@@ -10,4 +10,6 @@ router.route('/show-products-client')
     .get(productClient_1.default.showProduct);
 router.route('/find-products-client/:id')
     .get(productClient_1.default.findIdProducts);
+router.route('/get-limit-products/:page/:perPage')
+    .get(productClient_1.default.getLimitProducts);
 exports.default = router;

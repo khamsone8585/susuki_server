@@ -16,4 +16,6 @@ router.route('/delete-products/:id')
     .delete(productController_1.default.deleteProducts);
 router.route('/findId-products/:id')
     .get(productController_1.default.findIdProducts);
+router.route('/get-limit-products/:page/:perPage')
+    .get(productController_1.default.getLimitProducts);
 exports.default = router;

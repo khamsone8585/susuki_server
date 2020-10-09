@@ -22,6 +22,34 @@ const blogClient = {
         }catch(e){
             throw new Error
         }
+    },
+    getLimitBlogClient: async(req: Request, res: Response)=>{
+        const page = parseInt(req.params.page, 10)
+        const perPage = parseInt(req.params.perPage, 5)
+        try{
+            const Products = await blog.find()
+            .skip((page * perPage) - perPage)
+            .limit(perPage)
+            .populate(['categoryId'])
+            const counts=await blog.find().countDocuments()
+        res.status(200).json({Products, counts})
+        }catch(e){
+            throw new Error(e)
+        }
+    },
+    getLimitBlog: async(req: Request, res: Response)=>{
+        const page = parseInt(req.params.page, 10)
+        const perPage = parseInt(req.params.perPage, 5)
+        try{
+            const Blog = await blog.find()
+            .skip((page * perPage) - perPage)
+            .limit(perPage)
+            .populate(['categoryId'])
+            const counts=await blog.find().countDocuments()
+        res.status(200).json({Blog, counts})
+        }catch(e){
+            throw new Error(e)
+        }
     }
 } 
 

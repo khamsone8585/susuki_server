@@ -12,4 +12,6 @@ router.route('/delete-distributor/:id')
     .delete(distributorController.deleteDistributor)
 router.route('/findId-distributor/:id')
     .get(distributorController.findIdsDistributor)
+router.route('/get-limit-distributor/:page/:perPage')
+    .get(distributorController.getLimitDistributor)
 export default router

@@ -98,6 +98,24 @@ const distributorController = {
         catch (e) {
             throw new Error;
         }
+    }),
+    getLimitDistributor: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        const page = parseInt(req.params.page, 10);
+        const perPage = parseInt(req.params.perPage, 5);
+        try {
+            const distributors = yield Distributors_1.default.find()
+                .skip((page * perPage) - perPage)
+                .limit(perPage)
+                .populate({
+                path: 'districtId',
+                populate: 'provinceId'
+            });
+            const counts = yield Distributors_1.default.find().countDocuments();
+            res.status(200).json({ distributors, counts });
+        }
+        catch (e) {
+            throw new Error(e);
+        }
     })
 };
 exports.default = distributorController;

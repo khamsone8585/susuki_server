@@ -10,4 +10,6 @@ router.route('/show-blog-client')
     .get(blogClient_1.default.showBlog);
 router.route('/find-blog-client/:id')
     .get(blogClient_1.default.findIdProducts);
+router.route('/get-limit-products-client/:page/:perPage')
+    .get(blogClient_1.default.getLimitBlogClient);
 exports.default = router;

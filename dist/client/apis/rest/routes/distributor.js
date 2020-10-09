@@ -10,4 +10,6 @@ router.route('/show-distributor-client')
     .get(distributorClient_1.default.showDistributor);
 router.route('/find-distributor-client/:id')
     .get(distributorClient_1.default.findIdProducts);
+router.route('/get-limit-distributor-client/:page/:perPage')
+    .get(distributorClient_1.default.getLimitDistributor);
 exports.default = router;

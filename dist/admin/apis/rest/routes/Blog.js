@@ -16,4 +16,6 @@ router.route('/delete-blog/:id')
     .delete(blogController_1.default.deleteBlog);
 router.route('/findId-blog/:id')
     .get(blogController_1.default.findIdBlog);
+router.route('/get-limit-products/:page/:perPage')
+    .get(blogController_1.default.getLimitBlog);
 exports.default = router;
