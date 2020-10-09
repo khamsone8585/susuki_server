@@ -8,4 +8,6 @@ const blogClient_1 = __importDefault(require("../controller/blogClient"));
 const router = express_1.Router();
 router.route('/show-blog-client')
     .get(blogClient_1.default.showBlog);
+router.route('/find-blog-client/:id')
+    .get(blogClient_1.default.findIdProducts);
 exports.default = router;
