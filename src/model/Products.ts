@@ -25,8 +25,7 @@ const productsSchema = new Schema({
     },
     show:{
         type: Boolean,
-        default: true,
-        required: true
+        default: true
     },
     tagId:{
         type: Schema.Types.ObjectId,

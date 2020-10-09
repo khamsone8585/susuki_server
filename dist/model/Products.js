@@ -26,8 +26,7 @@ const productsSchema = new mongoose_1.Schema({
     },
     show: {
         type: Boolean,
-        default: true,
-        required: true
+        default: true
     },
     tagId: {
         type: mongoose_1.Schema.Types.ObjectId,
