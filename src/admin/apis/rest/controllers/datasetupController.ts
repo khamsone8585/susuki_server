@@ -7,11 +7,8 @@ const dataSetupController={
             logo,
             companyName,
             detail,
-            callCenter,
             workingDay,
-            workingTimes,
             address,
-            DistrictId,
             moreInformation
         }=req.body
         try{
@@ -19,11 +16,8 @@ const dataSetupController={
                 logo,
                 companyName,
                 detail,
-                callCenter,
                 workingDay,
-                workingTimes,
                 address,
-                DistrictId,
                 moreInformation
             })
             await addDatasets.save()
@@ -46,11 +40,8 @@ const dataSetupController={
             logo,
             companyName,
             detail,
-            callCenter,
             workingDay,
-            workingTimes,
             address,
-            DistrictId,
             moreInformation
         }=req.body
         try{
@@ -59,11 +50,8 @@ const dataSetupController={
                     logo,
                     companyName,
                     detail,
-                    callCenter,
                     workingDay,
-                    workingTimes,
                     address,
-                    DistrictId,
                     moreInformation
                 }
             },{runValidators:true, new:true}).populate(['$districts._id'])

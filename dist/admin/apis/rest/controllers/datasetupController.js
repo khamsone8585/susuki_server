@@ -15,17 +15,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const dataSets_1 = __importDefault(require("@/model/dataSets"));
 const dataSetupController = {
     addDatasets: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        const { logo, companyName, detail, callCenter, workingDay, workingTimes, address, DistrictId, moreInformation } = req.body;
+        const { logo, companyName, detail, workingDay, address, moreInformation } = req.body;
         try {
             const addDatasets = new dataSets_1.default({
                 logo,
                 companyName,
                 detail,
-                callCenter,
                 workingDay,
-                workingTimes,
                 address,
-                DistrictId,
                 moreInformation
             });
             yield addDatasets.save();
@@ -45,18 +42,15 @@ const dataSetupController = {
         }
     }),
     updateDatasets: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        const { id, logo, companyName, detail, callCenter, workingDay, workingTimes, address, DistrictId, moreInformation } = req.body;
+        const { id, logo, companyName, detail, workingDay, address, moreInformation } = req.body;
         try {
             const updateDataset = yield dataSets_1.default.findByIdAndUpdate(id, {
                 $set: {
                     logo,
                     companyName,
                     detail,
-                    callCenter,
                     workingDay,
-                    workingTimes,
                     address,
-                    DistrictId,
                     moreInformation
                 }
             }, { runValidators: true, new: true }).populate(['$districts._id']);
