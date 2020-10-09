@@ -23,7 +23,7 @@ const dataSetupController={
             await addDatasets.save()
             res.status(200).json({addDatasets})
         }catch(e){
-            throw new Error(e)
+            res.status(400).json(e)
         }
     },
     getDatasets: async(req: Request , res: Response)=>{
@@ -31,7 +31,7 @@ const dataSetupController={
             const getDataset = await dataSets.find()
             res.status(200).json({getDataset})
         }catch(e){
-            throw new Error(e)
+            res.status(400).json(e)
         }
     },
     updateDatasets: async(req: Request, res: Response)=>{
@@ -57,7 +57,7 @@ const dataSetupController={
             },{runValidators:true, new:true})
             res.status(220).json({updateDataset})
         }catch(e){
-            throw new Error(e)
+            res.status(400).json(e)
         }
     },
     deleteDatasets: async(req: Request, res: Response)=>{
@@ -66,7 +66,7 @@ const dataSetupController={
             await dataSets.findByIdAndDelete(id)
             res.status(200).json('Delete Successful')
         }catch(e){
-            throw new Error(e)
+            res.status(400).json(e)
         }
     }
 }

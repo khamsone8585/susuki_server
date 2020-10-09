@@ -1,6 +1,4 @@
 import {Schema , model} from 'mongoose'
-import { date } from 'yup'
-
 const DataSetupSchema = new Schema({
     logo: {
         type: String,

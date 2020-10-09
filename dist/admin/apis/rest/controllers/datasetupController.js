@@ -29,7 +29,7 @@ const dataSetupController = {
             res.status(200).json({ addDatasets });
         }
         catch (e) {
-            throw new Error(e);
+            res.status(400).json(e);
         }
     }),
     getDatasets: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -38,7 +38,7 @@ const dataSetupController = {
             res.status(200).json({ getDataset });
         }
         catch (e) {
-            throw new Error(e);
+            res.status(400).json(e);
         }
     }),
     updateDatasets: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -57,7 +57,7 @@ const dataSetupController = {
             res.status(220).json({ updateDataset });
         }
         catch (e) {
-            throw new Error(e);
+            res.status(400).json(e);
         }
     }),
     deleteDatasets: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -67,7 +67,7 @@ const dataSetupController = {
             res.status(200).json('Delete Successful');
         }
         catch (e) {
-            throw new Error(e);
+            res.status(400).json(e);
         }
     })
 };
