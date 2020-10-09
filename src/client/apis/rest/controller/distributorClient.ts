@@ -5,7 +5,10 @@ import distributor from '@/model/Distributors'
 const distributorClient={
     showDistributor: async(req: Request, res: Response)=>{
         try{
-            const showDistributors = await distributor.find()
+            const showDistributors = await distributor.find().populate({
+                path: 'districtId',
+                populate: 'provinceId'
+            })
             res.status(200).json({showDistributors})
         }catch(e){
             throw new Error(e)
@@ -15,7 +18,10 @@ const distributorClient={
         const {id}=req.params
         try{
             console.log(id)
-            const findId = await distributor.findById(id)
+            const findId = await distributor.findById(id).populate({
+                path: 'districtId',
+                populate: 'provinceId'
+            })
             res.status(200).json({findId})
         }catch(e){
             throw new Error

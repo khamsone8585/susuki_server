@@ -16,7 +16,10 @@ const Distributors_1 = __importDefault(require("@/model/Distributors"));
 const distributorClient = {
     showDistributor: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            const showDistributors = yield Distributors_1.default.find();
+            const showDistributors = yield Distributors_1.default.find().populate({
+                path: 'districtId',
+                populate: 'provinceId'
+            });
             res.status(200).json({ showDistributors });
         }
         catch (e) {
@@ -27,7 +30,10 @@ const distributorClient = {
         const { id } = req.params;
         try {
             console.log(id);
-            const findId = yield Distributors_1.default.findById(id);
+            const findId = yield Distributors_1.default.findById(id).populate({
+                path: 'districtId',
+                populate: 'provinceId'
+            });
             res.status(200).json({ findId });
         }
         catch (e) {
