@@ -28,7 +28,7 @@ const dataSetupController={
     },
     getDatasets: async(req: Request , res: Response)=>{
         try{
-            const getDataset = await dataSets.find()
+            const getDataset = await dataSets.findOne()
             res.status(200).json({getDataset})
         }catch(e){
             res.status(400).json(e)

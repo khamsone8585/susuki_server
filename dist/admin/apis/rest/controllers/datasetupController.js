@@ -34,7 +34,7 @@ const dataSetupController = {
     }),
     getDatasets: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            const getDataset = yield dataSets_1.default.find();
+            const getDataset = yield dataSets_1.default.findOne();
             res.status(200).json({ getDataset });
         }
         catch (e) {
