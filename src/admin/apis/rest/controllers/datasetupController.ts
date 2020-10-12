@@ -36,7 +36,6 @@ const dataSetupController={
     },
     updateDatasets: async(req: Request, res: Response)=>{
         const{
-            id,
             logo,
             companyName,
             detail,
@@ -45,7 +44,7 @@ const dataSetupController={
             moreInformation
         }=req.body
         try{
-            const updateDataset = await dataSets.findByIdAndUpdate(id,{
+            const updateDataset = await dataSets.findOneAndUpdate({},{
                 $set:{
                     logo,
                     companyName,

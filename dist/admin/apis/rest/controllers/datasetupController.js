@@ -42,9 +42,9 @@ const dataSetupController = {
         }
     }),
     updateDatasets: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        const { id, logo, companyName, detail, workingDay, address, moreInformation } = req.body;
+        const { logo, companyName, detail, workingDay, address, moreInformation } = req.body;
         try {
-            const updateDataset = yield dataSets_1.default.findByIdAndUpdate(id, {
+            const updateDataset = yield dataSets_1.default.findOneAndUpdate({}, {
                 $set: {
                     logo,
                     companyName,
