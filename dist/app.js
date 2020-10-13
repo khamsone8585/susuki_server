@@ -29,6 +29,7 @@ const path_1 = __importDefault(require("path"));
 const passport_1 = __importDefault(require("./plugin/passport"));
 const mongoose_1 = __importDefault(require("./plugin/mongoose"));
 const module_alias_1 = __importDefault(require("module-alias"));
+const passport_2 = require("./plugin/passport");
 //every push and build == true
 //offline == false
 const isProd = true;
@@ -91,6 +92,11 @@ class App {
         });
     }
     createRouter() {
+        const authPath = __dirname + '/admin/apis/rest/auth/';
+        fs_1.default.readdirSync(authPath).map((file) => {
+            const route = './admin/apis/rest/auth/' + file;
+            __classPrivateFieldGet(this, _app).use('/auth/api', require(route).default);
+        });
         const routePath = __dirname + '/client/apis/rest/routes/';
         fs_1.default.readdirSync(routePath).map((file) => {
             const route = './client/apis/rest/routes/' + file;
@@ -99,10 +105,7 @@ class App {
         const routePaths = __dirname + '/admin/apis/rest/routes/';
         fs_1.default.readdirSync(routePaths).map((file) => {
             const route = './admin/apis/rest/routes/' + file;
-            __classPrivateFieldGet(this, _app).use('/admin/api', require(route).default);
-        });
-        __classPrivateFieldGet(this, _app).get('*', (req, res) => {
-            res.status(404).json(404);
+            __classPrivateFieldGet(this, _app).use('/admin/api', passport_2.isAuth, require(route).default);
         });
     }
     createServer() {

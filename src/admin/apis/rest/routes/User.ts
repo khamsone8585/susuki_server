@@ -1,20 +1,18 @@
 import {Router} from 'express'
-import { adminSignIn } from '@/middlewares/auth'
 import userController from '../controllers/userController'
 
 const router: Router = Router()
 
 router.route('/create-user')
-    .post(adminSignIn,userController.addUser)
+    .post(userController.addUser)
 router.route('/get-user')
-    .get(adminSignIn,userController.getUser)
+    .get(userController.getUser)
 router.route('/update-user')
-    .put(adminSignIn,userController.updateUser)
+    .put(userController.updateUser)
 router.route('/delete-user/:id')
-    .delete(adminSignIn,userController.deleteUser)
+    .delete(userController.deleteUser)
 
-router.route('/admin-sign-in')
-    .post(adminSignIn, userController.adminSignIn)
 router.route('/findId-user/:id')
-    .get(adminSignIn,userController.findIdUser)
+    .get(userController.findIdUser)
+
 export default router

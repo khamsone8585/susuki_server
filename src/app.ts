@@ -11,6 +11,7 @@ import path from 'path'
 import passport from './plugin/passport'
 import Mongo from './plugin/mongoose'
 import moduleAlias from 'module-alias'
+import {isAuth} from './plugin/passport'
 
 //every push and build == true
 //offline == false
@@ -76,6 +77,7 @@ class App {
         this.#app.engine('handlebars', this.#expressHandlebars())
         this.#app.set('view engine', 'handlebars')
         this.#app.use(passport.initialize())
+
     }
 
     private createPage(): void {
@@ -85,30 +87,39 @@ class App {
     }
 
     private createRouter(): void {
+
+        const authPath = __dirname + '/admin/apis/rest/auth/'
+        fs.readdirSync(authPath).map((file: string) => {
+            const route = './admin/apis/rest/auth/' + file
+            this.#app.use('/auth/api', require(route).default)
+        
+        })
+    
+
         const routePath = __dirname + '/client/apis/rest/routes/'
         fs.readdirSync(routePath).map((file: string) => {
             const route = './client/apis/rest/routes/' + file
             this.#app.use('/client/api', require(route).default)
         })
+
+
         const routePaths = __dirname + '/admin/apis/rest/routes/'
         fs.readdirSync(routePaths).map((file: string) => {
             const route = './admin/apis/rest/routes/' + file
-            this.#app.use('/admin/api', require(route).default)
-        })
-        this.#app.get('*', (req: Request, res: Response) => {
-            res.status(404).json(404)
-        })
+            this.#app.use('/admin/api', isAuth, require(route).default)
+        
+            })
     }
 
-    private createServer(): void {
-        this.#httpServer = http.createServer(this.#app)
-    }
+        private createServer(): void {
+            this.#httpServer = http.createServer(this.#app)
+        }
 
-    private listen(): void {
-        this.#httpServer.listen(this.#port, () => {
-            console.log('Http is running at port: ' + this.#port)
-        })
-    }
+        private listen(): void {
+            this.#httpServer.listen(this.#port, () => {
+                console.log('Http is running at port: ' + this.#port)
+            })
+        }
 }
 
 // tslint:disable-next-line:no-unused-expression

@@ -1,5 +1,8 @@
 import {Router} from 'express'
+import { authenticate } from 'passport'
 import productController from '../controllers/productController'
+
+
 
 const router: Router = Router()
 
@@ -15,4 +18,6 @@ router.route('/findId-products/:id')
     .get(productController.findIdProducts)
 router.route('/get-limit-products/:page/:perPage')
     .get(productController.getLimitProducts)
+
+
 export default router
