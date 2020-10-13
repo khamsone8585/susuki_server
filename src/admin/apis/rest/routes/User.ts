@@ -1,4 +1,3 @@
-
 import {Router} from 'express'
 import { adminSignIn } from '@/middlewares/auth'
 import userController from '../controllers/userController'
@@ -6,16 +5,16 @@ import userController from '../controllers/userController'
 const router: Router = Router()
 
 router.route('/create-user')
-    .post(userController.addUser)
+    .post(adminSignIn,userController.addUser)
 router.route('/get-user')
-    .get(userController.getUser)
+    .get(adminSignIn,userController.getUser)
 router.route('/update-user')
-    .put(userController.updateUser)
+    .put(adminSignIn,userController.updateUser)
 router.route('/delete-user/:id')
-    .delete(userController.deleteUser)
+    .delete(adminSignIn,userController.deleteUser)
 
 router.route('/admin-sign-in')
     .post(adminSignIn, userController.adminSignIn)
 router.route('/findId-user/:id')
-    .get(userController.findIdUser)
+    .get(adminSignIn,userController.findIdUser)
 export default router
