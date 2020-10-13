@@ -106,7 +106,7 @@ class App {
         const routePaths = __dirname + '/admin/apis/rest/routes/'
         fs.readdirSync(routePaths).map((file: string) => {
             const route = './admin/apis/rest/routes/' + file
-            this.#app.use('/admin/api', isAuth, require(route).default)
+            this.#app.use('/admin/api',  isAuth, require(route).default)
         
             })
     }
