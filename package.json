@@ -27,7 +27,7 @@
     "path": "^0.12.7",
     "uuid": "^8.1.0",
     "uuidv4": "^6.2.3",
-    "yup": "^0.29.1"
+    "yup": "^0.29.3"
   },
   "devDependencies": {
     "@types/bcrypt": "^3.0.0",
@@ -49,7 +49,7 @@
     "@types/socket.io": "^2.1.10",
     "@types/socket.io-redis": "^1.0.26",
     "@types/uuid": "^7.0.3",
-    "@types/yup": "^0.29.3",
+    "@types/yup": "^0.29.8",
     "ts-loader": "^7.0.5",
     "ts-node-dev": "^1.0.0-pre.62",
     "tslint": "^6.1.2",

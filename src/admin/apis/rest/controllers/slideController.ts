@@ -50,7 +50,7 @@ const slideController = {
         const {id}=req.params
         try{
             const findId = await slideBanner.findById(id)
-            res.status(200).json({findId})
+            res.status(200).json(findId)
         }catch(e){
             res.status(400).json(e)
         }
