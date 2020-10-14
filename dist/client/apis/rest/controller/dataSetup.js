@@ -13,15 +13,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const dataSets_1 = __importDefault(require("@/model/dataSets"));
-const dataSetupController = {
+const dataSetupClient = {
     getDatasets: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         try {
             const getDataset = yield dataSets_1.default.find();
             res.status(200).json({ getDataset });
         }
         catch (e) {
-            throw new Error(e);
+            res.status(400).json(e);
         }
     })
 };
-exports.default = dataSetupController;
+exports.default = dataSetupClient;

@@ -1,8 +1,8 @@
 import {Router} from 'express'
-import dataSetupController from '../controller/dataSetup'
+import dataSetupClient from '../controller/dataSetup'
 
 const router : Router = Router()
 
 router.route('/show-dataset-client')
-    .get(dataSetupController.getDatasets)
+    .get(dataSetupClient.getDatasets)
 export default router

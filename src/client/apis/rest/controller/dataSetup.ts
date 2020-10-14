@@ -1,15 +1,15 @@
 import {Request, Response} from 'express'
 import dataSets from '@/model/dataSets'
 
-const dataSetupController={
+const dataSetupClient={
     getDatasets: async(req: Request , res: Response)=>{
         try{
             const getDataset = await dataSets.find()
             res.status(200).json({getDataset})
         }catch(e){
-            throw new Error(e)
+            res.status(400).json(e)
         }
     }
 }
 
-export default dataSetupController
+export default dataSetupClient
