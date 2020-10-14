@@ -16,11 +16,10 @@ const blogClient = {
     findIdProducts: async(req: Request, res: Response)=>{
         const {id}=req.params
         try{
-            console.log(id)
             const findId = await blog.findById(id)
             res.status(200).json({findId})
         }catch(e){
-            throw new Error
+            throw new Error(e)
         }
     },
     getLimitBlogClient: async(req: Request, res: Response)=>{

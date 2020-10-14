@@ -6,7 +6,7 @@ const blogController = {
     addBlog: async(req: Request, res: Response)=>{
         const{title,image,descriptions,categoryId}=req.body
         try{
-            if(!title) return res.status(400).json('Please Enter Category')
+            // if(!title) return res.status(400).json('Please Enter Category')
             const addBlogs = new Blogs({
                 title,
                 image,
@@ -15,7 +15,7 @@ const blogController = {
             })
             await addBlogs.save()
             res.status(200).json({addBlogs})
-        }catch(e){  
+        }catch(e){
             res.status(400).json(e)
         }
     },

@@ -17,8 +17,7 @@ const blogController = {
     addBlog: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const { title, image, descriptions, categoryId } = req.body;
         try {
-            if (!title)
-                return res.status(400).json('Please Enter Category');
+            // if(!title) return res.status(400).json('Please Enter Category')
             const addBlogs = new Blog_1.default({
                 title,
                 image,

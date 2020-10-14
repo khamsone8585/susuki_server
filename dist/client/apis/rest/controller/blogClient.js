@@ -28,12 +28,11 @@ const blogClient = {
     findIdProducts: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const { id } = req.params;
         try {
-            console.log(id);
             const findId = yield Blog_1.default.findById(id);
             res.status(200).json({ findId });
         }
         catch (e) {
-            throw new Error;
+            throw new Error(e);
         }
     }),
     getLimitBlogClient: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
