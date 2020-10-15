@@ -41,8 +41,10 @@ const bannerController = {
         const { id, image, url } = req.body;
         try {
             const updateBanners = yield banner_1.default.findByIdAndUpdate(id, {
-                image,
-                url
+                $set: {
+                    image,
+                    url
+                }
             }, { runValidators: true, new: true });
             res.status(200).json({ updateBanners });
         }

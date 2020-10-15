@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.userSchema = exports.productsSchema = exports.distributorSchema = exports.blogSchema = void 0;
+exports.slideSchema = exports.bannerSchema = exports.userSchema = exports.productsSchema = exports.distributorSchema = exports.blogSchema = void 0;
 const joi_1 = __importDefault(require("@hapi/joi"));
 exports.blogSchema = joi_1.default.object({
     title: joi_1.default.string().required(),
@@ -43,12 +43,16 @@ exports.productsSchema = joi_1.default.object({
 exports.userSchema = joi_1.default.object({
     picture: joi_1.default.string().required(),
     firstName: joi_1.default.string()
-        .required()
-        .messages({
-        'string.base': 'Invalid type, firstName must be a String',
-        'string.empty': 'Please enter your firstName',
-    }),
-    lastName: joi_1.default.string().required(),
+        .required().message('Please enter your firstName'),
+    lastName: joi_1.default.string().required().message('Please enter your lastName'),
     email: joi_1.default.string().email().required(),
     password: joi_1.default.string().required()
+});
+exports.bannerSchema = joi_1.default.object({
+    image: joi_1.default.string().required(),
+    url: joi_1.default.string()
+});
+exports.slideSchema = joi_1.default.object({
+    image: joi_1.default.string().required(),
+    url: joi_1.default.string()
 });

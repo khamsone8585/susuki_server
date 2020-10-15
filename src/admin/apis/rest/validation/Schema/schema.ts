@@ -42,14 +42,18 @@ export const productsSchema = Joi.object({
 export const userSchema = Joi.object({
     picture: Joi.string().required(),
     firstName: Joi.string()
-    .required()
-    .messages({
-        'string.base': 'Invalid type, firstName must be a String',
-        'string.empty': 'Please enter your firstName',
-    }),
-    lastName: Joi.string().required(),
+    .required().message('Please enter your firstName'),
+    lastName: Joi.string().required().message('Please enter your lastName'),
     email: Joi.string().email().required(),
     password: Joi.string().required()
     
+})
+export const bannerSchema = Joi.object({
+    image: Joi.string().required(),
+    url: Joi.string()
+})
+export const slideSchema = Joi.object({
+    image: Joi.string().required(),
+    url: Joi.string()
 })
 

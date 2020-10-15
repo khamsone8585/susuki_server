@@ -46,3 +46,11 @@ const userValidator = (req, res, next) => __awaiter(void 0, void 0, void 0, func
     }
     next();
 });
+const bannerValidator = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        yield schema_1.bannerSchema.validateAsync(req.body);
+    }
+    catch (e) {
+        return res.status(400).json({ error: e.details[0].message });
+    }
+});

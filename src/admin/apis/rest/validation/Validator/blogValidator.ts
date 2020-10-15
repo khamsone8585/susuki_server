@@ -1,4 +1,4 @@
-import {blogSchema,distributorSchema,productsSchema,userSchema} from '../Schema/schema'
+import {blogSchema,distributorSchema,productsSchema,userSchema,bannerSchema} from '../Schema/schema'
 import {Request, Response, NextFunction} from 'express'
 
 const blogValidator = async(req: Request, res: Response, next: NextFunction)=>{
@@ -37,3 +37,12 @@ const userValidator = async(req: Request, res: Response, next: NextFunction)=>{
     }
     next()
 }
+
+const bannerValidator = async(req: Request, res: Response, next: NextFunction)=>{
+    try{
+        await bannerSchema.validateAsync(req.body)
+    }catch(e){
+        return res.status(400).json({error: e.details[0].message})
+    }
+}
+
