@@ -14,6 +14,8 @@ router.route('/update-user')
     .put(userController_1.default.updateUser);
 router.route('/delete-user/:id')
     .delete(userController_1.default.deleteUser);
+router.route('/current-user')
+    .get(userController_1.default.getCurrentUser);
 router.route('/findId-user/:id')
     .get(userController_1.default.findIdUser);
 exports.default = router;

@@ -11,7 +11,8 @@ router.route('/update-user')
     .put(userController.updateUser)
 router.route('/delete-user/:id')
     .delete(userController.deleteUser)
-
+router.route('/current-user')
+    .get(userController.getCurrentUser)
 router.route('/findId-user/:id')
     .get(userController.findIdUser)
 

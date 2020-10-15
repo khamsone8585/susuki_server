@@ -91,6 +91,9 @@ const userController = {
         catch (e) {
             res.status(400).json(e);
         }
+    }),
+    getCurrentUser: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        res.status(200).json({ user: req.user });
     })
 };
 exports.default = userController;

@@ -86,6 +86,9 @@ const userController ={
         }catch(e){
             res.status(400).json(e)
         }
+    },
+    getCurrentUser : async(req: Request, res: Response)=>{
+        res.status(200).json({user:req.user})
     }
 }
 export default userController
