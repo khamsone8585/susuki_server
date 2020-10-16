@@ -86,7 +86,7 @@ const productController ={
     },
     getLimitProducts: async(req: Request, res: Response)=>{
         const page = parseInt(req.params.page, 10)
-        const perPage = parseInt(req.params.perPage, 5)
+        const perPage = parseInt(req.params.perPage, 10)
         try{
             const Products = await products.find()
             .skip((page * perPage) - perPage)
