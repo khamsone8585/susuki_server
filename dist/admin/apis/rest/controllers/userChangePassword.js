@@ -14,33 +14,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const User_1 = __importDefault(require("@/model/User"));
 const bcrypt_1 = require("@/utils/bcrypt");
-const jwt_1 = require("@/utils/jwt");
 const bcrypt_2 = require("@/utils/bcrypt");
 const userController = {
-    addUser: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        const { picture, firstName, lastName, email, password, } = req.body;
-        try {
-            const md5Password = bcrypt_1.genHash(password);
-            const check = yield User_1.default.findOne({ email });
-            if (check) {
-                res.status(200).json('This e-mail already registered');
-            }
-            else {
-                const addUsers = new User_1.default({
-                    picture,
-                    firstName,
-                    lastName,
-                    email,
-                    password: md5Password,
-                });
-                yield addUsers.save();
-                res.status(200).json({ addUsers });
-            }
-        }
-        catch (e) {
-            res.status(400).json(e);
-        }
-    }),
     // syntax Query data from mongo  
     getUser: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         try {
@@ -72,21 +47,6 @@ const userController = {
         catch (e) {
             res.status(400).json(e);
         }
-    }),
-    deleteUser: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        const { id } = req.params;
-        try {
-            yield User_1.default.findByIdAndDelete(id);
-            res.status(200).json('Delete Success');
-        }
-        catch (e) {
-            res.status(400).json(e);
-        }
-    }),
-    adminSignIn: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        const user = req.user;
-        const accessToken = jwt_1.signToken(user);
-        res.status(200).json({ accessToken });
     }),
     findIdUser: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const { id } = req.params;

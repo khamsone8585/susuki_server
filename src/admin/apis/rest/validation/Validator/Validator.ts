@@ -32,7 +32,6 @@ const userValidator = async(req: Request, res: Response, next: NextFunction)=>{
     try{
         await userSchema.validateAsync(req.body)
     }catch(e){
-        
         return res.status(400).json({error: e.details[0].message})
     }
     next()

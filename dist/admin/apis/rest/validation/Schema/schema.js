@@ -42,8 +42,7 @@ exports.productsSchema = joi_1.default.object({
 });
 exports.userSchema = joi_1.default.object({
     picture: joi_1.default.string().required(),
-    firstName: joi_1.default.string()
-        .required().message('Please enter your firstName'),
+    firstName: joi_1.default.string().required().message('Please enter your firstName'),
     lastName: joi_1.default.string().required().message('Please enter your lastName'),
     email: joi_1.default.string().email().required(),
     password: joi_1.default.string().required()

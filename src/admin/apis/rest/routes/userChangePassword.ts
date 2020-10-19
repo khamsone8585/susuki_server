@@ -7,7 +7,6 @@ const router: Router = Router()
 
 router.route('/update-user-change')
     .put(userChangePassword.updateUser)
-
 router.route('/findId-user/:id')
     .get(userChangePassword.findIdUser)
 

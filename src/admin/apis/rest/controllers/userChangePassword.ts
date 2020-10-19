@@ -5,34 +5,6 @@ import {signToken} from '@/utils/jwt'
 import {compareHash} from '@/utils/bcrypt'
 
 const userController ={
-    addUser: async(req: Request, res: Response) =>{
-        const {
-            picture,
-            firstName,
-            lastName,
-            email,
-            password,
-        }=req.body
-        try{
-            const md5Password=genHash(password)
-            const check = await users.findOne({email})
-            if(check){
-                res.status(200).json('This e-mail already registered')
-            }else{
-            const addUsers = new users({
-                picture,
-                firstName,
-                lastName,
-                email,
-                password:md5Password,
-            })
-            await addUsers.save()
-            res.status(200).json({addUsers})
-            }
-        }catch (e){
-            res.status(400).json(e)
-        }
-    },
     // syntax Query data from mongo  
     getUser : async(req: Request, res: Response) =>{
         try{
@@ -65,20 +37,6 @@ const userController ={
             }catch(e){
                 res.status(400).json(e)
         }
-    },
-    deleteUser: async(req: Request, res: Response) =>{
-        const {id}=req.params
-        try{
-            await users.findByIdAndDelete(id)
-            res.status(200).json('Delete Success')
-        }catch(e){
-            res.status(400).json(e)
-        }
-    },
-    adminSignIn:async(req: Request, res: Response)=>{
-        const user: any = req.user
-        const accessToken = signToken(user)
-        res.status(200).json({accessToken})
     },
     findIdUser: async(req: Request, res: Response)=>{
         const {id}=req.params

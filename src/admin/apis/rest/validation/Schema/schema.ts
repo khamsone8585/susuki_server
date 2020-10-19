@@ -41,12 +41,10 @@ export const productsSchema = Joi.object({
 })
 export const userSchema = Joi.object({
     picture: Joi.string().required(),
-    firstName: Joi.string()
-    .required().message('Please enter your firstName'),
+    firstName: Joi.string().required().message('Please enter your firstName'),
     lastName: Joi.string().required().message('Please enter your lastName'),
     email: Joi.string().email().required(),
     password: Joi.string().required()
-    
 })
 export const bannerSchema = Joi.object({
     image: Joi.string().required(),
