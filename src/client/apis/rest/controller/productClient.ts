@@ -33,7 +33,7 @@ const productClient = {
                     count: findId.count + 1
                 }
             },{runValidators: true, new: true})
-            res.status(200).json(findId)
+            res.status(200).json({findId:productsCount})
         }catch(e){
             throw new Error
         }
