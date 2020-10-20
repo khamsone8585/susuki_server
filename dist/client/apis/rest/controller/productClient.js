@@ -45,7 +45,7 @@ const productClient = {
             res.status(200).json({ findId: productsCount });
         }
         catch (e) {
-            throw new Error;
+            res.status(400).json(e);
         }
     }),
     getLimitProducts: (req, res) => __awaiter(void 0, void 0, void 0, function* () {

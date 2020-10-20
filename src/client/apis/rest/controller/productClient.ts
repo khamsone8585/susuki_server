@@ -5,6 +5,7 @@ import Category from '@/model/Category'
 import tag from '@/model/Tag'
 import categoryPipe from '@/pipes/groupCategory'
 import productPipe from '@/pipes/groupProducts'
+import products from '@/model/Products'
 const productClient = {
     showProduct : async(req: Request , res: Response)=>{
         try{
@@ -35,7 +36,7 @@ const productClient = {
             },{runValidators: true, new: true})
             res.status(200).json({findId:productsCount})
         }catch(e){
-            throw new Error
+            res.status(400).json(e)
         }
     },
     getLimitProducts: async(req: Request, res: Response)=>{
