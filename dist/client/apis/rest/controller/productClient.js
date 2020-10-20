@@ -36,8 +36,12 @@ const productClient = {
     findIdProducts: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const { id } = req.params;
         try {
-            console.log(id);
             const findId = yield Products_1.default.findById(id);
+            const productsCount = yield Products_1.default.findByIdAndUpdate(id, {
+                $set: {
+                    count: findId.count + 1
+                }
+            }, { runValidators: true, new: true });
             res.status(200).json(findId);
         }
         catch (e) {

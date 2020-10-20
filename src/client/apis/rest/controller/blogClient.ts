@@ -17,7 +17,6 @@ const blogClient = {
         const {id}=req.params
         try{
             const findId : any = await blog.findById(id)
-            console.log(findId)
             const blogCount =  await blog.findByIdAndUpdate(id,{
                 $set:{
                     count: findId.count + 1

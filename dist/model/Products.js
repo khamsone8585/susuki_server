@@ -32,6 +32,11 @@ const productsSchema = new mongoose_1.Schema({
         type: mongoose_1.Schema.Types.ObjectId,
         ref: 'tag'
     },
+    count: {
+        type: Number,
+        required: true,
+        default: 0
+    },
     info: [{
             key: {
                 type: String,

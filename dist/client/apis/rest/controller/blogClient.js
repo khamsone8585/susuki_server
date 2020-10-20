@@ -29,7 +29,6 @@ const blogClient = {
         const { id } = req.params;
         try {
             const findId = yield Blog_1.default.findById(id);
-            console.log(findId);
             const blogCount = yield Blog_1.default.findByIdAndUpdate(id, {
                 $set: {
                     count: findId.count + 1

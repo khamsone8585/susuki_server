@@ -31,6 +31,11 @@ const productsSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'tag'
     },
+    count:{
+        type: Number,
+        required: true,
+        default: 0
+    },
     info: [{
     key: {
         type: String,

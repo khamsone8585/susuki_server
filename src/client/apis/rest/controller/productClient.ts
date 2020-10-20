@@ -27,8 +27,12 @@ const productClient = {
     findIdProducts: async(req: Request, res: Response)=>{
         const {id}=req.params
         try{
-            console.log(id)
-            const findId = await product.findById(id)
+            const findId: any = await product.findById(id)
+            const productsCount =  await product.findByIdAndUpdate(id,{
+                $set:{
+                    count: findId.count + 1
+                }
+            },{runValidators: true, new: true})
             res.status(200).json(findId)
         }catch(e){
             throw new Error
