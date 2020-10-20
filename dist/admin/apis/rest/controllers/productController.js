@@ -83,8 +83,8 @@ const productController = {
         }
     }),
     getLimitProducts: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        const page = parseInt(req.params.page, 10);
-        const perPage = parseInt(req.params.perPage, 5);
+        const page = parseInt(req.params.page, 100);
+        const perPage = parseInt(req.params.perPage, 10);
         try {
             const Products = yield Products_1.default.find()
                 .skip((page * perPage) - perPage)
