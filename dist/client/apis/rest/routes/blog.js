@@ -9,7 +9,7 @@ const router = express_1.Router();
 router.route('/show-blog-client')
     .get(blogClient_1.default.showBlog);
 router.route('/find-blog-client/:id')
-    .get(blogClient_1.default.findIdProducts);
+    .get(blogClient_1.default.findIdBlogClient);
 router.route('/get-limit-products-client/:page/:perPage')
     .get(blogClient_1.default.getLimitBlogClient);
 exports.default = router;

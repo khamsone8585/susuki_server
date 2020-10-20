@@ -14,6 +14,11 @@ const BlogSchema = new mongoose_1.Schema({
         type: String,
         required: true
     },
+    count: {
+        type: Number,
+        required: true,
+        default: 0
+    },
     categoryId: {
         type: mongoose_1.Schema.Types.ObjectId,
         required: true,

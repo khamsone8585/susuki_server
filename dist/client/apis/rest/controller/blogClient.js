@@ -25,14 +25,20 @@ const blogClient = {
             throw new Error(e);
         }
     }),
-    findIdProducts: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    findIdBlogClient: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const { id } = req.params;
         try {
             const findId = yield Blog_1.default.findById(id);
-            res.status(200).json({ findId });
+            console.log(findId);
+            const blogCount = yield Blog_1.default.findByIdAndUpdate(id, {
+                $set: {
+                    count: findId.count + 1
+                }
+            }, { runValidators: true, new: true });
+            res.status(200).json({ findId: blogCount });
         }
         catch (e) {
-            throw new Error(e);
+            res.status(400).json(e);
         }
     }),
     getLimitBlogClient: (req, res) => __awaiter(void 0, void 0, void 0, function* () {

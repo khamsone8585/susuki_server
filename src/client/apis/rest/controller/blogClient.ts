@@ -13,13 +13,19 @@ const blogClient = {
             throw new Error(e)
         }
     },
-    findIdProducts: async(req: Request, res: Response)=>{
+    findIdBlogClient: async(req: Request, res: Response)=>{
         const {id}=req.params
         try{
-            const findId = await blog.findById(id)
-            res.status(200).json({findId})
+            const findId : any = await blog.findById(id)
+            console.log(findId)
+            const blogCount =  await blog.findByIdAndUpdate(id,{
+                $set:{
+                    count: findId.count + 1
+                }
+            },{runValidators: true, new: true})
+            res.status(200).json({findId:blogCount})
         }catch(e){
-            throw new Error(e)
+            res.status(400).json(e)
         }
     },
     getLimitBlogClient: async(req: Request, res: Response)=>{

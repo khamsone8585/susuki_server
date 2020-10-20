@@ -1,3 +1,5 @@
+import { number } from '@hapi/joi'
+import { isInteger, toInteger } from 'lodash'
 import {Schema, model} from 'mongoose'
 
 const BlogSchema = new Schema({
@@ -12,6 +14,11 @@ const BlogSchema = new Schema({
     descriptions: {
         type: String,
         required: true
+    },
+    count:{
+        type: Number,
+        required: true,
+        default: 0
     },
     categoryId: {
         type: Schema.Types.ObjectId,
