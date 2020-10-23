@@ -88,12 +88,14 @@ const productController ={
     getLimitProducts: async(req: Request, res: Response)=>{
         const page = parseInt(req.params.page, 10)
         const perPage = parseInt(req.params.perPage, 10)
+        const {name}=req.query
+        console.log(name)
         try{
-            const Products = await products.find()
+            const Products = await products.find({ name: { $regex: name, $options: "i" } })
             .skip((page * perPage) - perPage)
             .limit(perPage)
             .populate(['categoryId','tagId'])
-            const counts=await products.find().countDocuments()
+            const counts=await products.find({ name: { $regex: name, $options: "i" } }).countDocuments()
         res.status(200).json({Products, counts})
         }catch(e){
             throw new Error(e)

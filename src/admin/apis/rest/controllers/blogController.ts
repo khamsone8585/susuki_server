@@ -72,12 +72,13 @@ const blogController = {
     getLimitBlog: async(req: Request, res: Response)=>{
         const page = parseInt(req.params.page, 10)
         const perPage = parseInt(req.params.perPage, 5)
+        const {title}=req.query
         try{
-            const Blog = await Blogs.find()
+            const Blog = await Blogs.find({ title: { $regex: title, $options: "i" } })
             .skip((page * perPage) - perPage)
             .limit(perPage)
             .populate(['categoryId'])
-            const counts=await Blogs.find().countDocuments()
+            const counts=await Blogs.find({ title: { $regex: title, $options: "i" } }).countDocuments()
         res.status(200).json({Blog, counts})
         }catch(e){
             throw new Error(e)

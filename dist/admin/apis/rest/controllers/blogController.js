@@ -81,12 +81,13 @@ const blogController = {
     getLimitBlog: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const page = parseInt(req.params.page, 10);
         const perPage = parseInt(req.params.perPage, 5);
+        const { title } = req.query;
         try {
-            const Blog = yield Blog_1.default.find()
+            const Blog = yield Blog_1.default.find({ title: { $regex: title, $options: "i" } })
                 .skip((page * perPage) - perPage)
                 .limit(perPage)
                 .populate(['categoryId']);
-            const counts = yield Blog_1.default.find().countDocuments();
+            const counts = yield Blog_1.default.find({ title: { $regex: title, $options: "i" } }).countDocuments();
             res.status(200).json({ Blog, counts });
         }
         catch (e) {
