@@ -24,7 +24,7 @@ const aboutUsController = {
     updateAboutUs: async(req: Request, res: Response)=>{
         const{id,detail}= req.body
         try{
-            const updateAboutUss = await aboutUs.findByIdAndUpdate(id,{
+            const updateAboutUss = await aboutUs.findOneAndUpdate({},{
                 $set:{
                     detail
                 }

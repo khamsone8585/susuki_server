@@ -39,7 +39,7 @@ const aboutUsController = {
     updateAboutUs: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const { id, detail } = req.body;
         try {
-            const updateAboutUss = yield aboutUs_1.default.findByIdAndUpdate(id, {
+            const updateAboutUss = yield aboutUs_1.default.findOneAndUpdate({}, {
                 $set: {
                     detail
                 }
