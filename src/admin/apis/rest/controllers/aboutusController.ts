@@ -15,7 +15,7 @@ const aboutUsController = {
     },
     showAboutUs: async(req: Request, res: Response)=>{
         try{
-            const showAboutUss = await aboutUs.find()
+            const showAboutUss = await aboutUs.findOne()
             res.status(200).json({showAboutUss})
         }catch(e){
             res.status(400).json(e)

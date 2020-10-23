@@ -29,7 +29,7 @@ const aboutUsController = {
     }),
     showAboutUs: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            const showAboutUss = yield aboutUs_1.default.find();
+            const showAboutUss = yield aboutUs_1.default.findOne();
             res.status(200).json({ showAboutUss });
         }
         catch (e) {
