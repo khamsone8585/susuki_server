@@ -35,7 +35,7 @@ const distributorController ={
         try{
             // const d = await District.findOne().populate('ProvinceId')
             // console.log(d)
-            const getDistributors: any = await distributor.find()
+            const getDistributors: any = await distributor.find().sort("-createdAt")
             .populate({
                 path: 'districtId',
                 populate: 'provinceId'

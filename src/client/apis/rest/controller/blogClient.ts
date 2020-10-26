@@ -1,13 +1,14 @@
 import {Request, Response} from 'express'
 import blog from '@/model/Blog'
 import catBlog from '@/model/CategoryBlog'
+import { sortBy } from 'lodash'
 //import use module
 
 //create Controller
 const blogClient = {
     showBlog: async(req: Request, res: Response)=>{
         try{
-            const showBlogs = await blog.find().populate(['categoryId'])
+            const showBlogs = await blog.find().populate(['categoryId']).sort("-createdAt")
             res.status(200).json({showBlogs})
         }catch(e){
             throw new Error(e)

@@ -34,7 +34,7 @@ const blogController = {
     showBlog: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const { title } = req.query;
         try {
-            const showBlogs = yield Blog_1.default.find({ title: { $regex: title, $options: "i" } }).populate(['categoryId']);
+            const showBlogs = yield Blog_1.default.find({ title: { $regex: title, $options: "i" } }).populate(['categoryId']).sort("-createdAt");
             res.status(200).json({ showBlogs });
         }
         catch (e) {

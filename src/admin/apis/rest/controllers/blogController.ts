@@ -22,8 +22,7 @@ const blogController = {
     showBlog: async(req: Request, res: Response)=>{
         const{title}=req.query
         try{
-            const showBlogs = await Blogs.find({  title: { $regex: title, $options: "i" } }).populate(['categoryId'])
-            
+            const showBlogs = await Blogs.find({  title: { $regex: title, $options: "i" } }).populate(['categoryId']).sort("-createdAt")
             res.status(200).json({showBlogs})
         }catch(e){
             res.status(400).json(e)

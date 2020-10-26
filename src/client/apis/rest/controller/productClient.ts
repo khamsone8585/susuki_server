@@ -9,7 +9,7 @@ import products from '@/model/Products'
 const productClient = {
     showProduct : async(req: Request , res: Response)=>{
         try{
-            const showProducts = await Category.aggregate(productPipe)
+            const showProducts = await Category.aggregate(productPipe).sort("-createdAt")
             const mapProducts = showProducts.map((i: any) =>{
                 const products = i.products.filter((o: any) => {
                     if(!o._id || !o.show) return 
@@ -43,7 +43,7 @@ const productClient = {
         const page = parseInt(req.params.page, 10)
         const perPage = parseInt(req.params.perPage, 5)
         try{
-            const Products = await product.find()
+            const Products = await product.find().sort("-createdAt")
             .skip((page * perPage) - perPage)
             .limit(perPage)
             .populate(['categoryId','tagId'])

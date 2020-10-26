@@ -33,7 +33,7 @@ const productController ={
     getProducts: async(req: Request, res: Response)=>{
         const {name}=req.query
         try{
-            const getProducts = await products.find({  name: { $regex: name, $options: "i" } }).populate(['categoryId','tagId'])
+            const getProducts = await products.find({  name: { $regex: name, $options: "i" } }).populate(['categoryId','tagId']).sort("-createdAt")
             res.status(200).json({getProducts})
         }catch(e){
             res.status(400).json(e)

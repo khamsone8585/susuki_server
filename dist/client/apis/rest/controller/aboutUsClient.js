@@ -12,16 +12,26 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const banner_1 = __importDefault(require("@/model/banner"));
-const bannerClient = {
-    showBanner: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const aboutUs_1 = __importDefault(require("@/model/aboutUs"));
+const aboutUsClient = {
+    showAboutUs: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            const getBanners = yield banner_1.default.find().sort("-createdAt");
-            res.status(200).json({ getBanners });
+            const showAboutUss = yield aboutUs_1.default.findOne().sort("-createdAt");
+            res.status(200).json({ showAboutUss });
+        }
+        catch (e) {
+            res.status(400).json(e);
+        }
+    }),
+    findIdAboutUs: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        const { id } = req.params;
+        try {
+            const findId = yield aboutUs_1.default.findById(id);
+            res.status(200).json({ findId });
         }
         catch (e) {
             res.status(400).json(e);
         }
     })
 };
-exports.default = bannerClient;
+exports.default = aboutUsClient;

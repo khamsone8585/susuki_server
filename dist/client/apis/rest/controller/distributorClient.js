@@ -19,7 +19,7 @@ const distributorClient = {
             const showDistributors = yield Distributors_1.default.find().populate({
                 path: 'districtId',
                 populate: 'provinceId'
-            });
+            }).sort("-createdAt");
             res.status(200).json({ showDistributors });
         }
         catch (e) {

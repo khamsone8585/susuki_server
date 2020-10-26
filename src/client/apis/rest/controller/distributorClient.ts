@@ -8,7 +8,7 @@ const distributorClient={
             const showDistributors = await distributor.find().populate({
                 path: 'districtId',
                 populate: 'provinceId'
-            })
+            }).sort("-createdAt")
             res.status(200).json({showDistributors})
         }catch(e){
             throw new Error(e)
