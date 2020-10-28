@@ -36,7 +36,7 @@ const productController = {
     getProducts: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const { name } = req.query;
         try {
-            const getProducts = yield Products_1.default.find({ name: { $regex: name, $options: "i" } }).populate(['categoryId', 'tagId']).sort('-createAt');
+            const getProducts = yield Products_1.default.find({ name: { $regex: name, $options: "i" } }).populate(['categoryId', 'tagId']);
             res.status(200).json({ getProducts });
         }
         catch (e) {

@@ -1,5 +1,5 @@
 import {Schema, model} from 'mongoose'
-import { boolean } from 'yup'
+
 const productsSchema = new Schema({
     categoryId: {
         type: Schema.Types.ObjectId,
