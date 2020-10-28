@@ -18,7 +18,7 @@ const groupProducts_1 = __importDefault(require("@/pipes/groupProducts"));
 const productClient = {
     showProduct: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            const showProducts = yield Category_1.default.aggregate(groupProducts_1.default).sort("-createdAt");
+            const showProducts = yield Category_1.default.aggregate(groupProducts_1.default);
             const mapProducts = showProducts.map((i) => {
                 const products = i.products.filter((o) => {
                     if (!o._id || !o.show)

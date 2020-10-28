@@ -15,12 +15,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const CategoryBlog_1 = __importDefault(require("@/model/CategoryBlog"));
 const categoryBlogController = {
     addCateBlog: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        const { cateName } = req.body;
+        const { cateName, sortOrder } = req.body;
         try {
             if (!cateName)
                 return res.status(400).json('Please Enter Category');
+            const sort = yield CategoryBlog_1.default.findOne().sort('-createdAt');
             const addCateBlogs = new CategoryBlog_1.default({
-                cateName
+                cateName,
+                sortOrder: sort.sortOrder + 1
             });
             yield addCateBlogs.save();
             res.status(200).json({ addCateBlogs });
@@ -31,7 +33,7 @@ const categoryBlogController = {
     }),
     getCateBlog: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            const getCateBlog = yield CategoryBlog_1.default.find();
+            const getCateBlog = yield CategoryBlog_1.default.find().sort('sortOrder');
             res.status(200).json({ getCateBlog });
         }
         catch (e) {
@@ -39,11 +41,12 @@ const categoryBlogController = {
         }
     }),
     updateCateBlog: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        const { id, cateName } = req.body;
+        const { id, cateName, sortOrder } = req.body;
         try {
             const updateCateBlogs = yield CategoryBlog_1.default.findByIdAndUpdate(id, {
                 $set: {
-                    cateName
+                    cateName,
+                    sortOrder
                 }
             }, { runValidators: true, new: true });
             res.status(200).json({ updateCateBlogs });

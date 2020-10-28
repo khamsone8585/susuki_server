@@ -15,12 +15,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Category_1 = __importDefault(require("@/model/Category"));
 const categoryController = {
     addCategory: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        const { cateName, show } = req.body;
+        const { cateName, show, sortOrder } = req.body;
         try {
             if (!cateName)
                 return res.status(400).json('Please Enter Category');
+            const sort = yield Category_1.default.findOne().sort('-createdAt');
             const addCategorys = new Category_1.default({
                 cateName,
+                sortOrder: sort.sortOrder + 1
             });
             yield addCategorys.save();
             res.status(200).json({ addCategorys });
@@ -31,7 +33,7 @@ const categoryController = {
     }),
     getCategory: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            const getCategory = yield Category_1.default.find();
+            const getCategory = yield Category_1.default.find().sort('sortOrder');
             res.status(200).json({ getCategory });
         }
         catch (e) {
@@ -39,11 +41,12 @@ const categoryController = {
         }
     }),
     updateCategory: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        const { id, cateName, show } = req.body;
+        const { id, cateName, show, sortOrder } = req.body;
         try {
             const updateCategorys = yield Category_1.default.findByIdAndUpdate(id, {
                 $set: {
-                    cateName
+                    cateName,
+                    sortOrder
                 }
             }, { runValidators: true, new: true }).populate(['usersId']);
             res.status(200).json({ updateCategorys });

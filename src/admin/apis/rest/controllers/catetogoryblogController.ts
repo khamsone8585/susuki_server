@@ -3,11 +3,13 @@ import categoryBlog from '@/model/CategoryBlog'
 
 const categoryBlogController = {
     addCateBlog : async (req: Request, res: Response) =>{
-        const{cateName}=req.body
+        const{cateName,sortOrder}=req.body
         try{
             if(!cateName) return res.status(400).json('Please Enter Category')
+            const sort:any = await categoryBlog.findOne().sort('-createdAt')
             const addCateBlogs = new categoryBlog({
-                cateName
+                cateName,
+                sortOrder:sort.sortOrder + 1
             })
         await addCateBlogs.save()
         res.status(200).json({addCateBlogs})
@@ -17,7 +19,7 @@ const categoryBlogController = {
     },
     getCateBlog : async(req:Request, res: Response) =>{
         try{
-            const getCateBlog = await categoryBlog.find()
+            const getCateBlog = await categoryBlog.find().sort('sortOrder')
             res.status(200).json({getCateBlog}) 
         }catch(e){
             res.status(400).json(e)
@@ -26,12 +28,14 @@ const categoryBlogController = {
     updateCateBlog : async(req: Request, res: Response) =>{
         const{
             id,
-            cateName
+            cateName,
+            sortOrder
         }=req.body
         try{
             const updateCateBlogs = await categoryBlog.findByIdAndUpdate(id,{
                 $set:{
-                    cateName
+                    cateName,
+                    sortOrder
                 }
             },{runValidators:true, new :true})
             res.status(200).json({updateCateBlogs})

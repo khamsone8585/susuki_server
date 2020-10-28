@@ -5,12 +5,15 @@ const categoryController ={
     addCategory: async(req: Request,res: Response)=>{
         const {
             cateName,
-            show
+            show,
+            sortOrder
         }=req.body
         try{
             if(!cateName) return res.status(400).json('Please Enter Category')
+            const sort:any = await category.findOne().sort('-createdAt')
             const addCategorys = new category({
                 cateName,
+                sortOrder:sort.sortOrder + 1
             })
             await addCategorys.save()
             res.status(200).json({addCategorys})
@@ -20,7 +23,7 @@ const categoryController ={
     },
     getCategory:async(req: Request, res: Response)=>{
         try{
-            const getCategory = await category.find()
+            const getCategory = await category.find().sort('sortOrder')
             res.status(200).json({getCategory})
         }catch(e){
             res.status(400).json(e)
@@ -30,12 +33,14 @@ const categoryController ={
         const{
             id,
             cateName,
-            show
+            show,
+            sortOrder
         }=req.body
         try{
             const updateCategorys = await category.findByIdAndUpdate(id,{
                 $set:{
-                    cateName
+                    cateName,
+                    sortOrder
                 }
             },{runValidators:true, new :true}).populate(['usersId'])
             res.status(200).json({updateCategorys})

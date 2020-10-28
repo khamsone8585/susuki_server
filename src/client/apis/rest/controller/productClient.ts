@@ -9,7 +9,7 @@ import products from '@/model/Products'
 const productClient = {
     showProduct : async(req: Request , res: Response)=>{
         try{
-            const showProducts = await Category.aggregate(productPipe).sort("-createdAt")
+            const showProducts = await Category.aggregate(productPipe)
             const mapProducts = showProducts.map((i: any) =>{
                 const products = i.products.filter((o: any) => {
                     if(!o._id || !o.show) return 
@@ -17,7 +17,7 @@ const productClient = {
                 })
                 return {
                     ...i,
-                products
+                    products
                 }
             })
             res.status(200).json({mapProducts})

@@ -17,7 +17,8 @@ export default [{$lookup: {
   }}, {$group: {
     _id: {
       _id: '$_id',
-      name: '$cateName'
+      name: '$cateName',
+      sortOrder: '$sortOrder'
     },
     products: {
       $push: '$products'
@@ -25,5 +26,12 @@ export default [{$lookup: {
   }}, {$project: {
     _id: '$_id._id',
     name: '$_id.name',
+    sortOrder: '$_id.sortOrder',
     products: '$products'
-  }}]  
+  }},
+{
+  $sort: {
+    sortOrder: 1
+  }
+}
+]  

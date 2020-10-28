@@ -5,6 +5,12 @@ const categoryBlogSchema = new mongoose_1.Schema({
     cateName: {
         type: String,
         required: true
+    },
+    sortOrder: {
+        type: Number,
+        unique: true,
+        default: 0,
+        required: true
     }
 }, { timestamps: true });
 const categoryBlog = mongoose_1.model('categoryBlog', categoryBlogSchema, 'categoryBlog');

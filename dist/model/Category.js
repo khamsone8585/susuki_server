@@ -11,6 +11,12 @@ const CategorySchema = new mongoose_1.Schema({
         default: true,
         required: true
     },
+    sortOrder: {
+        type: Number,
+        unique: true,
+        default: 0,
+        required: true
+    }
 }, { timestamps: true });
 const Category = mongoose_1.model('Category', CategorySchema, 'Category');
 exports.default = Category;

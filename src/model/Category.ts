@@ -1,3 +1,4 @@
+import { number } from '@hapi/joi'
 import {Schema, model} from 'mongoose'
 
 const CategorySchema = new Schema({
@@ -10,6 +11,12 @@ const CategorySchema = new Schema({
         default: true,
         required: true
     },
+    sortOrder:{
+        type: Number,
+        unique: true,
+        default: 0,
+        required: true
+    }
 },{timestamps: true})
 const Category = model('Category', CategorySchema,'Category')
 export default Category
