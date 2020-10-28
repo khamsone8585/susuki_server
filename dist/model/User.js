@@ -21,6 +21,10 @@ const userSchema = new mongoose_1.Schema({
     password: {
         type: String,
         required: true,
+    },
+    verifyCode: {
+        type: Number,
+        default: 0
     }
 }, { timestamps: true });
 const users = mongoose_1.model('user', userSchema, 'user');

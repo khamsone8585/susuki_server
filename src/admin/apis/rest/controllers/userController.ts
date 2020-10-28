@@ -89,6 +89,14 @@ const userController ={
     },
     getCurrentUser : async(req: Request, res: Response)=>{
         res.status(200).json({user:req.user})
+    },
+    sendEmail: async(req: Request, res: Response)=>{
+        const {email}=req.body
+        try{
+            
+        }catch(e){
+            res.status(400).json(e)
+        }
     }
 }
 export default userController

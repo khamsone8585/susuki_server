@@ -7,7 +7,6 @@ const categoryBlogSchema = new Schema({
     },
     sortOrder:{
         type: Number,
-        unique: true,
         default: 0,
         required: true
     }

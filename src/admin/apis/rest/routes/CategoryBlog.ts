@@ -12,4 +12,6 @@ router.route('/deletecateblog/:id')
     .delete(catetogoryblogController.deleteCateBlog)
 router.route('/findId-cateblog/:id')
     .get(catetogoryblogController.findIdBlog)
+router.route('/sort-blog')
+    .put(catetogoryblogController.sortBlog)
 export default router

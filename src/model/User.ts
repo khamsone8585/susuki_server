@@ -1,3 +1,4 @@
+import { number } from '@hapi/joi'
 import {Schema, model} from 'mongoose'
 
 const userSchema = new Schema({
@@ -20,6 +21,10 @@ const userSchema = new Schema({
     password:{
         type: String,
         required: true,
+    },
+    verifyCode:{
+        type: Number,
+        default: 0
     }
 },{timestamps:true})
 const users = model('user', userSchema,'user')

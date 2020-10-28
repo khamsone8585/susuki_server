@@ -94,6 +94,14 @@ const userController = {
     }),
     getCurrentUser: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.status(200).json({ user: req.user });
+    }),
+    sendEmail: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        const { email } = req.body;
+        try {
+        }
+        catch (e) {
+            res.status(400).json(e);
+        }
     })
 };
 exports.default = userController;

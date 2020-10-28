@@ -16,4 +16,6 @@ router.route('/deletecateblog/:id')
     .delete(catetogoryblogController_1.default.deleteCateBlog);
 router.route('/findId-cateblog/:id')
     .get(catetogoryblogController_1.default.findIdBlog);
+router.route('/sort-blog')
+    .put(catetogoryblogController_1.default.sortBlog);
 exports.default = router;

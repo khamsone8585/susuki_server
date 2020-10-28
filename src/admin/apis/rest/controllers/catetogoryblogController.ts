@@ -60,6 +60,23 @@ const categoryBlogController = {
         }catch(e){
             res.status(400).json(e)
         }
+    },
+    sortBlog: async(req: Request, res: Response)=>{
+        const {items}=req.body
+        try{
+            await Promise.all(
+                items.map(async(i:any, index:number)=>{
+                    await categoryBlog.findByIdAndUpdate(i._id,{
+                        $set:{
+                            sortOrder:index
+                        }
+                    })
+                })
+            )
+            res.status(200).json('kkk')
+        }catch(e){
+            res.status(400).json(e)
+        }
     }
 }
 
