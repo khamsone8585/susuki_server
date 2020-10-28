@@ -73,7 +73,7 @@ const categoryBlogController = {
                     })
                 })
             )
-            res.status(200).json('kkk')
+            res.status(200).json('Success')
         }catch(e){
             res.status(400).json(e)
         }
