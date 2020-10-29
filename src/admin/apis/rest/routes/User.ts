@@ -15,5 +15,6 @@ router.route('/current-user')
     .get(userController.getCurrentUser)
 router.route('/findId-user/:id')
     .get(userController.findIdUser)
-
+router.route('/sent-email')
+    .put(userController.sendEmail)
 export default router

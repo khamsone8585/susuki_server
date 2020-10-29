@@ -12,4 +12,6 @@ router.route('/delete-tag/:id')
     .delete(tagController.deleteTag)
 router.route('/findId-tag/:id')
     .get(tagController.findIdTag)
+router.route('/sort-tag')
+    .put(tagController.sortTag)
 export default router

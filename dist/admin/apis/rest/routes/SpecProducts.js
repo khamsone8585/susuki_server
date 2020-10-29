@@ -16,4 +16,6 @@ router.route('/delete-spec-products/:id')
     .delete(specproductsController_1.default.deleteSpec);
 router.route('/findId-spec-products/:id')
     .get(specproductsController_1.default.findIdSpec);
+router.route('/sort-specProducts')
+    .put(specproductsController_1.default.sortSpecProduct);
 exports.default = router;

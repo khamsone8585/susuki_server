@@ -2,8 +2,10 @@ import {Request, Response} from 'express'
 import users from '@/model/User'
 import {genHash} from '@/utils/bcrypt'
 import {signToken} from '@/utils/jwt'
+import { genNumber } from '@/utils/Generate'
 import {compareHash} from '@/utils/bcrypt'
-
+import transporter from '@/plugin/nodemailer'
+import { verify } from 'crypto'
 const userController ={
     addUser: async(req: Request, res: Response) =>{
         const {
@@ -93,7 +95,24 @@ const userController ={
     sendEmail: async(req: Request, res: Response)=>{
         const {email}=req.body
         try{
-            
+            const sendmail:any = await users.findOne({email})
+              if(!sendmail) res.status(200).json('This is does not existed')
+                 const randomNumber = genNumber(6)
+                await users.findByIdAndUpdate(sendmail,{
+                    $set:{
+                        verifyCode:randomNumber
+                        //verifyCode:undefined
+                    }
+                },{runValidators:true, new:true})
+                console.log(email)
+                sendmail.email.map((email:string)=>{
+                    transporter.sendMail({
+                        from: '108.jobs',
+                        to: email,
+                        subject: 'VerifyCode from suzuki',
+                        text : 'Your verification code is ' + randomNumber
+                    })
+                })
         }catch(e){
             res.status(400).json(e)
         }

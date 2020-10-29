@@ -15,6 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const User_1 = __importDefault(require("@/model/User"));
 const bcrypt_1 = require("@/utils/bcrypt");
 const jwt_1 = require("@/utils/jwt");
+const Generate_1 = require("@/utils/Generate");
+const nodemailer_1 = __importDefault(require("@/plugin/nodemailer"));
 const userController = {
     addUser: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const { picture, firstName, lastName, email, password, } = req.body;
@@ -98,6 +100,25 @@ const userController = {
     sendEmail: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const { email } = req.body;
         try {
+            const sendmail = yield User_1.default.findOne({ email });
+            if (!sendmail)
+                res.status(200).json('This is does not existed');
+            const randomNumber = Generate_1.genNumber(6);
+            yield User_1.default.findByIdAndUpdate(sendmail, {
+                $set: {
+                    verifyCode: randomNumber
+                    //verifyCode:undefined
+                }
+            }, { runValidators: true, new: true });
+            console.log(email);
+            sendmail.email.map((email) => {
+                nodemailer_1.default.sendMail({
+                    from: '108.jobs',
+                    to: email,
+                    subject: 'VerifyCode from suzuki',
+                    text: 'Your verification code is ' + randomNumber
+                });
+            });
         }
         catch (e) {
             res.status(400).json(e);

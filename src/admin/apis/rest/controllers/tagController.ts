@@ -56,6 +56,23 @@ const tagController = {
         }catch(e){
             throw new Error
         }
+    },
+    sortTag: async(req: Request, res: Response)=>{
+        const {items}=req.body
+        try{
+            await Promise.all(
+                items.map(async(i:any, index:number)=>{
+                    await tag.findByIdAndUpdate(i._id,{
+                        $set:{
+                            sortOrder:index
+                        }
+                    })
+                })
+            )
+            res.status(200).json('Success')
+        }catch(e){
+            res.status(400).json(e)
+        }
     }
 }
 

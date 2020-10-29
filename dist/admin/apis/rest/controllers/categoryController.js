@@ -74,6 +74,22 @@ const categoryController = {
         catch (e) {
             throw new Error;
         }
+    }),
+    sortCategory: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        const { items } = req.body;
+        try {
+            yield Promise.all(items.map((i, index) => __awaiter(void 0, void 0, void 0, function* () {
+                yield Category_1.default.findByIdAndUpdate(i._id, {
+                    $set: {
+                        sortOrder: index
+                    }
+                });
+            })));
+            res.status(200).json('Success');
+        }
+        catch (e) {
+            res.status(400).json(e);
+        }
     })
 };
 exports.default = categoryController;

@@ -13,7 +13,6 @@ const CategorySchema = new mongoose_1.Schema({
     },
     sortOrder: {
         type: Number,
-        unique: true,
         default: 0,
         required: true
     }

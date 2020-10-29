@@ -16,4 +16,6 @@ router.route('/delete-category/:id')
     .delete(categoryController_1.default.deleteCategory);
 router.route('/findId-category/:id')
     .get(categoryController_1.default.findIdCategory);
+router.route('/sort-category')
+    .put(categoryController_1.default.sortCategory);
 exports.default = router;

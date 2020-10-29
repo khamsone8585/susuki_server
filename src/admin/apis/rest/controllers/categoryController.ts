@@ -65,6 +65,23 @@ const categoryController ={
         }catch(e){
             throw new Error
         }
+    },
+    sortCategory: async(req: Request, res: Response)=>{
+        const {items}=req.body
+        try{
+            await Promise.all(
+                items.map(async(i:any, index:number)=>{
+                    await category.findByIdAndUpdate(i._id,{
+                        $set:{
+                            sortOrder:index
+                        }
+                    })
+                })
+            )
+            res.status(200).json('Success')
+        }catch(e){
+            res.status(400).json(e)
+        }
     }
 }
 export default categoryController
