@@ -31,7 +31,7 @@ const tagController = {
     }),
     getTag: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            const getTags = yield Tag_1.default.find();
+            const getTags = yield Tag_1.default.find().sort('sortOrder');
             res.status(200).json({ getTags });
         }
         catch (e) {

@@ -16,7 +16,7 @@ import {isAuth} from './plugin/passport'
 //every push and build == true
 //offline == false
 
-const isProd = false
+const isProd = true
 if (isProd) {
     moduleAlias.addAliases({
         "@": path.join(__dirname, '/../dist')

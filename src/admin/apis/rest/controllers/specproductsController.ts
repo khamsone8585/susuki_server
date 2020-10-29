@@ -18,7 +18,7 @@ const specProductsController = {
     },
     getSpec: async(req: Request, res: Response)=>{
         try{
-            const getSpecs = await specProduct.find()
+            const getSpecs = await specProduct.find().sort('sortOrder')
             res.status(200).json({getSpecs}) 
         }catch(e){
             res.status(400).json(e)

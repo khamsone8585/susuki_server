@@ -29,7 +29,7 @@ const specProductsController = {
     }),
     getSpec: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            const getSpecs = yield specProducts_1.default.find();
+            const getSpecs = yield specProducts_1.default.find().sort('sortOrder');
             res.status(200).json({ getSpecs });
         }
         catch (e) {

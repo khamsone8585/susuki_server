@@ -17,7 +17,7 @@ const tagController = {
     },
     getTag: async(req:Request, res: Response)=>{
         try{
-            const getTags = await tag.find()
+            const getTags = await tag.find().sort('sortOrder')
             res.status(200).json({getTags})
         }catch(e){
             res.status(400).json(e)
