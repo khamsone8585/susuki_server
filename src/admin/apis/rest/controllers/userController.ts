@@ -5,7 +5,7 @@ import {signToken} from '@/utils/jwt'
 import { genNumber } from '@/utils/Generate'
 import {compareHash} from '@/utils/bcrypt'
 import transporter from '@/plugin/nodemailer'
-import { verify } from 'crypto'
+const BASE_URL = process.env.BASE_URL || 'https://news.suzukilaos.com/ResetPassword'
 const userController ={
     addUser: async(req: Request, res: Response) =>{
         const {
@@ -95,27 +95,27 @@ const userController ={
     sendEmail: async(req: Request, res: Response)=>{
         const {email}=req.body
         try{
-            const sendmail:any = await users.findOne({email})
-              if(!sendmail) res.status(200).json('This is does not existed')
-                 const randomNumber = genNumber(6)
-                await users.findByIdAndUpdate(sendmail,{
-                    $set:{
-                        verifyCode:randomNumber
-                        //verifyCode:undefined
-                    }
-                },{runValidators:true, new:true})
-                console.log(email)
-                sendmail.email.map((email:string)=>{
-                    transporter.sendMail({
-                        from: '108.jobs',
+            const sendMail:any = await users.findOne({email})
+            if(!sendMail) res.status(200).json('This is does not existed')
+                sendMail.email = transporter.sendMail({
+                        from: 'new.suzuki.lao@gmail.com',
                         to: email,
-                        subject: 'VerifyCode from suzuki',
-                        text : 'Your verification code is ' + randomNumber
+                        subject: 'Reset Password Form SuzukiLaos',
+                        text : `
+                        Thank you for using our service.
+                        Your job(s) have been posted, Kindly refer to the link(s) below.
+                        ${process.env.BASE_URL}
+                        
+                        Should you have any question please do not hesitate to contact us.
+                        
+                        Best regards,`
                     })
-                })
+                res.status(200).json('OK')
         }catch(e){
-            res.status(400).json(e)
+            console.log(e)
         }
     }
+    
 }
 export default userController
+

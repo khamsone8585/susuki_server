@@ -22,7 +22,7 @@ const blogController = {
     showBlog: async(req: Request, res: Response)=>{
         const{title}=req.query
         try{
-            const showBlogs = await Blogs.find({  title: { $regex: title, $options: "i" } }).populate(['categoryId']).sort("-createdAt")
+            const showBlogs = await Blogs.find({  title: { $regex: title, $options: "i" } }).populate(['categoryId']).sort('-createdAt')
             res.status(200).json({showBlogs})
         }catch(e){
             res.status(400).json(e)
@@ -70,7 +70,7 @@ const blogController = {
     },
     getLimitBlog: async(req: Request, res: Response)=>{
         const page = parseInt(req.params.page, 10)
-        const perPage = parseInt(req.params.perPage, 5)
+        const perPage = parseInt(req.params.perPage, 10)
         const {title}=req.query
         try{
             const Blog = await Blogs.find({ title: { $regex: title, $options: "i" } })

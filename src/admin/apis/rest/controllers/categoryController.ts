@@ -10,13 +10,23 @@ const categoryController ={
         }=req.body
         try{
             if(!cateName) return res.status(400).json('Please Enter Category')
+            
             const sort:any = await category.findOne().sort('-createdAt')
-            const addCategorys = new category({
-                cateName,
-                sortOrder:sort.sortOrder + 1
-            })
-            await addCategorys.save()
-            res.status(200).json({addCategorys})
+            if(!sort){
+                const addCateBlogs = new category({
+                    cateName
+                })
+                await addCateBlogs.save()
+                res.status(200).json({addCateBlogs})
+            }else{
+                const addCateBlogs = new category({
+                    cateName,
+                    sortOrder :sort.sortOrder + 1
+                })
+                await addCateBlogs.save()
+                res.status(200).json({addCateBlogs})
+            }
+            
         }catch(e){
             res.status(400).json(e)
         }

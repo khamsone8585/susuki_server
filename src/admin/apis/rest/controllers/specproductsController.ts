@@ -3,15 +3,23 @@ import specProduct from '@/model/specProducts'
 
 const specProductsController = {
     addSpec: async(req: Request, res: Response)=>{
-        const {
-            key
-        }=req.body
+        const {key}=req.body
         try{
-        const addSpecs = new specProduct({
-            key
-        })
-        await addSpecs.save()
-        res.status(200).json({addSpecs})
+            const sort:any = await specProduct.findOne().sort('-createdAt')
+            if(!sort){
+                const addCateBlogs = new specProduct({
+                    key
+                })
+                await addCateBlogs.save()
+                res.status(200).json({addCateBlogs})
+            }else{
+                const addCateBlogs = new specProduct({
+                    key,
+                    sortOrder :sort.sortOrder + 1
+                })
+                await addCateBlogs.save()
+                res.status(200).json({addCateBlogs})
+            }
         }catch(e){
         res.status(400).json(e)
         }

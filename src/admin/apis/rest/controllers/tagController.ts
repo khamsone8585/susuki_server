@@ -6,11 +6,23 @@ const tagController = {
         const {tagName}=req.body
         try{
             if(!tagName) return res.status(400).json('Please Enter Tag')
-            const addTags = new tag({
-                tagName
-            })
-        await addTags.save()
-        res.status(200).json({addTags})
+            
+            const sort:any = await tag.findOne().sort('-createdAt')
+            if(!sort){
+                const addCateBlogs = new tag({
+                    tagName
+                })
+                await addCateBlogs.save()
+                res.status(200).json({addCateBlogs})
+            }else{
+                const addCateBlogs = new tag({
+                    tagName,
+                    sortOrder :sort.sortOrder + 1
+                })
+                await addCateBlogs.save()
+                res.status(200).json({addCateBlogs})
+            }
+
         }catch(e){
             res.status(400).json(e)
         }

@@ -15,17 +15,26 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const CategoryBlog_1 = __importDefault(require("@/model/CategoryBlog"));
 const categoryBlogController = {
     addCateBlog: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        const { cateName, sortOrder } = req.body;
+        const { cateName } = req.body;
         try {
             if (!cateName)
                 return res.status(400).json('Please Enter Category');
             const sort = yield CategoryBlog_1.default.findOne().sort('-createdAt');
-            const addCateBlogs = new CategoryBlog_1.default({
-                cateName,
-                sortOrder: sort.sortOrder + 1
-            });
-            yield addCateBlogs.save();
-            res.status(200).json({ addCateBlogs });
+            if (!sort) {
+                const addCateBlogs = new CategoryBlog_1.default({
+                    cateName
+                });
+                yield addCateBlogs.save();
+                res.status(200).json({ addCateBlogs });
+            }
+            else {
+                const addCateBlogs = new CategoryBlog_1.default({
+                    cateName,
+                    sortOrder: sort.sortOrder + 1
+                });
+                yield addCateBlogs.save();
+                res.status(200).json({ addCateBlogs });
+            }
         }
         catch (e) {
             res.status(400).json(e);

@@ -1,18 +1,29 @@
 import {Request, Response} from 'express'
 import categoryBlog from '@/model/CategoryBlog'
+import { exit } from 'process'
 
 const categoryBlogController = {
     addCateBlog : async (req: Request, res: Response) =>{
-        const{cateName,sortOrder}=req.body
+        const{cateName}=req.body
         try{
             if(!cateName) return res.status(400).json('Please Enter Category')
+
             const sort:any = await categoryBlog.findOne().sort('-createdAt')
-            const addCateBlogs = new categoryBlog({
-                cateName,
-                sortOrder:sort.sortOrder + 1
-            })
-        await addCateBlogs.save()
-        res.status(200).json({addCateBlogs})
+            if(!sort){
+                const addCateBlogs = new categoryBlog({
+                    cateName
+                })
+                await addCateBlogs.save()
+                res.status(200).json({addCateBlogs})
+            }else{
+                const addCateBlogs = new categoryBlog({
+                    cateName,
+                    sortOrder :sort.sortOrder + 1
+                })
+                await addCateBlogs.save()
+                res.status(200).json({addCateBlogs})
+            }
+            
         }catch(e){
             res.status(400).json(e)
         }

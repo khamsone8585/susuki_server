@@ -19,11 +19,22 @@ const tagController = {
         try {
             if (!tagName)
                 return res.status(400).json('Please Enter Tag');
-            const addTags = new Tag_1.default({
-                tagName
-            });
-            yield addTags.save();
-            res.status(200).json({ addTags });
+            const sort = yield Tag_1.default.findOne().sort('-createdAt');
+            if (!sort) {
+                const addCateBlogs = new Tag_1.default({
+                    tagName
+                });
+                yield addCateBlogs.save();
+                res.status(200).json({ addCateBlogs });
+            }
+            else {
+                const addCateBlogs = new Tag_1.default({
+                    tagName,
+                    sortOrder: sort.sortOrder + 1
+                });
+                yield addCateBlogs.save();
+                res.status(200).json({ addCateBlogs });
+            }
         }
         catch (e) {
             res.status(400).json(e);

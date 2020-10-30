@@ -20,12 +20,21 @@ const categoryController = {
             if (!cateName)
                 return res.status(400).json('Please Enter Category');
             const sort = yield Category_1.default.findOne().sort('-createdAt');
-            const addCategorys = new Category_1.default({
-                cateName,
-                sortOrder: sort.sortOrder + 1
-            });
-            yield addCategorys.save();
-            res.status(200).json({ addCategorys });
+            if (!sort) {
+                const addCateBlogs = new Category_1.default({
+                    cateName
+                });
+                yield addCateBlogs.save();
+                res.status(200).json({ addCateBlogs });
+            }
+            else {
+                const addCateBlogs = new Category_1.default({
+                    cateName,
+                    sortOrder: sort.sortOrder + 1
+                });
+                yield addCateBlogs.save();
+                res.status(200).json({ addCateBlogs });
+            }
         }
         catch (e) {
             res.status(400).json(e);

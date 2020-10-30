@@ -18,6 +18,4 @@ router.route('/current-user')
     .get(userController_1.default.getCurrentUser);
 router.route('/findId-user/:id')
     .get(userController_1.default.findIdUser);
-router.route('/sent-email')
-    .put(userController_1.default.sendEmail);
 exports.default = router;

@@ -17,11 +17,22 @@ const specProductsController = {
     addSpec: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const { key } = req.body;
         try {
-            const addSpecs = new specProducts_1.default({
-                key
-            });
-            yield addSpecs.save();
-            res.status(200).json({ addSpecs });
+            const sort = yield specProducts_1.default.findOne().sort('-createdAt');
+            if (!sort) {
+                const addCateBlogs = new specProducts_1.default({
+                    key
+                });
+                yield addCateBlogs.save();
+                res.status(200).json({ addCateBlogs });
+            }
+            else {
+                const addCateBlogs = new specProducts_1.default({
+                    key,
+                    sortOrder: sort.sortOrder + 1
+                });
+                yield addCateBlogs.save();
+                res.status(200).json({ addCateBlogs });
+            }
         }
         catch (e) {
             res.status(400).json(e);
