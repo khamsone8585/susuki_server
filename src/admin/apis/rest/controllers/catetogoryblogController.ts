@@ -1,6 +1,5 @@
 import {Request, Response} from 'express'
 import categoryBlog from '@/model/CategoryBlog'
-import { exit } from 'process'
 
 const categoryBlogController = {
     addCateBlog : async (req: Request, res: Response) =>{

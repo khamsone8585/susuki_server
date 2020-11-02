@@ -43,14 +43,12 @@ const categoryController ={
         const{
             id,
             cateName,
-            show,
-            sortOrder
+            show
         }=req.body
         try{
             const updateCategorys = await category.findByIdAndUpdate(id,{
                 $set:{
-                    cateName,
-                    sortOrder
+                    cateName
                 }
             },{runValidators:true, new :true}).populate(['usersId'])
             res.status(200).json({updateCategorys})

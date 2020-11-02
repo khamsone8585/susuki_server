@@ -50,12 +50,11 @@ const categoryController = {
         }
     }),
     updateCategory: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        const { id, cateName, show, sortOrder } = req.body;
+        const { id, cateName, show } = req.body;
         try {
             const updateCategorys = yield Category_1.default.findByIdAndUpdate(id, {
                 $set: {
-                    cateName,
-                    sortOrder
+                    cateName
                 }
             }, { runValidators: true, new: true }).populate(['usersId']);
             res.status(200).json({ updateCategorys });
