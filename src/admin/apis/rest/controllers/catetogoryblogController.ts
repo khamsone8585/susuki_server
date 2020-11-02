@@ -39,14 +39,12 @@ const categoryBlogController = {
     updateCateBlog : async(req: Request, res: Response) =>{
         const{
             id,
-            cateName,
-            sortOrder
+            cateName
         }=req.body
         try{
             const updateCateBlogs = await categoryBlog.findByIdAndUpdate(id,{
                 $set:{
-                    cateName,
-                    sortOrder
+                    cateName
                 }
             },{runValidators:true, new :true})
             res.status(200).json({updateCateBlogs})

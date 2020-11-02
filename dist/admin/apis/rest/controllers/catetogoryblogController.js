@@ -50,12 +50,11 @@ const categoryBlogController = {
         }
     }),
     updateCateBlog: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        const { id, cateName, sortOrder } = req.body;
+        const { id, cateName } = req.body;
         try {
             const updateCateBlogs = yield CategoryBlog_1.default.findByIdAndUpdate(id, {
                 $set: {
-                    cateName,
-                    sortOrder
+                    cateName
                 }
             }, { runValidators: true, new: true });
             res.status(200).json({ updateCateBlogs });
