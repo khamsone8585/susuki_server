@@ -28,9 +28,10 @@ const categoryBlogController = {
                 res.status(200).json({ addCateBlogs });
             }
             else {
+                const plusOrder = yield CategoryBlog_1.default.findOne().sort('-sortOrder');
                 const addCateBlogs = new CategoryBlog_1.default({
                     cateName,
-                    sortOrder: sort.sortOrder + 1
+                    sortOrder: plusOrder.sortOrder + 1
                 });
                 yield addCateBlogs.save();
                 res.status(200).json({ addCateBlogs });

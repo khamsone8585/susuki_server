@@ -28,9 +28,10 @@ const tagController = {
                 res.status(200).json({ addCateBlogs });
             }
             else {
+                const plusOrder = yield Tag_1.default.findOne().sort('-sortOrder');
                 const addCateBlogs = new Tag_1.default({
                     tagName,
-                    sortOrder: sort.sortOrder + 1
+                    sortOrder: plusOrder.sortOrder + 1
                 });
                 yield addCateBlogs.save();
                 res.status(200).json({ addCateBlogs });

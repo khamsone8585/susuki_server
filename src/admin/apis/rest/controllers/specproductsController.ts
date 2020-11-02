@@ -13,9 +13,10 @@ const specProductsController = {
                 await addCateBlogs.save()
                 res.status(200).json({addCateBlogs})
             }else{
+                const plusOrder:any = await specProduct.findOne().sort('-sortOrder')
                 const addCateBlogs = new specProduct({
                     key,
-                    sortOrder :sort.sortOrder + 1
+                    sortOrder : plusOrder.sortOrder + 1
                 })
                 await addCateBlogs.save()
                 res.status(200).json({addCateBlogs})

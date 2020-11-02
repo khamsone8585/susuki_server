@@ -26,9 +26,10 @@ const specProductsController = {
                 res.status(200).json({ addCateBlogs });
             }
             else {
+                const plusOrder = yield specProducts_1.default.findOne().sort('-sortOrder');
                 const addCateBlogs = new specProducts_1.default({
                     key,
-                    sortOrder: sort.sortOrder + 1
+                    sortOrder: plusOrder.sortOrder + 1
                 });
                 yield addCateBlogs.save();
                 res.status(200).json({ addCateBlogs });

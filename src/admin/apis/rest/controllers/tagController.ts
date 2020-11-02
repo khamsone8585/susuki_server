@@ -15,9 +15,10 @@ const tagController = {
                 await addCateBlogs.save()
                 res.status(200).json({addCateBlogs})
             }else{
+                const plusOrder:any = await tag.findOne().sort('-sortOrder')
                 const addCateBlogs = new tag({
                     tagName,
-                    sortOrder :sort.sortOrder + 1
+                    sortOrder : plusOrder.sortOrder + 1
                 })
                 await addCateBlogs.save()
                 res.status(200).json({addCateBlogs})
