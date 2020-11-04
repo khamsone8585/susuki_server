@@ -9,8 +9,6 @@ router.route('/admin-sign-in')
 router.route('/send-email')
     .post(userController.sendEmail)
 router.route('/reset-new-password')
-    .put(newPasswordController.updateNewPassword)
-
-
+    .put(newPasswordController.changePasswordWhenLogin)
 export default router
 

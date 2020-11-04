@@ -24,23 +24,44 @@ const newPasswordController = {
             res.status(400).json(e);
         }
     }),
-    updateNewPassword: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        const { id, password, newPassword } = req.body;
+    // updateNewPassword: async(req: Request, res: Response) =>{
+    //     const{
+    //         id,
+    //         password,
+    //         newPassword
+    //     }=req.body
+    //     try{
+    //         const userChange:any = await users.findById(id)
+    //         const isMatch = compareHash(password,userChange.password);
+    //         if(isMatch){
+    //         const md5Password=genHash(newPassword)
+    //         const updateUsers = await users.findByIdAndUpdate(id,{
+    //             $set:{
+    //                 password:md5Password,
+    //                 }
+    //             },{ runValidators: true, new:true})
+    //             res.status(200).json({updateUsers})
+    //             }else{
+    //                 res.status(400).json('Password Wrong !!!')
+    //             }
+    //         }catch(e){
+    //             res.status(400).json(e)
+    //     }
+    // },
+    changePasswordWhenLogin: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        const { id, newPasswords, confirmPasswords } = req.body;
         try {
-            const userChange = yield User_1.default.findById(id);
-            const isMatch = (userChange.id === User_1.default);
-            if (isMatch) {
-                const md5Password = bcrypt_1.genHash(newPassword);
-                const updateUsers = yield User_1.default.findByIdAndUpdate(id, {
-                    $set: {
-                        password: md5Password,
-                    }
-                }, { runValidators: true, new: true });
-                res.status(200).json({ updateUsers });
-            }
-            else {
-                res.status(400).json('Password Wrong !!!');
-            }
+            const isMatch = newPasswords === confirmPasswords;
+            if (!isMatch)
+                return "Password doesn't match...!";
+            const hashedPassword = bcrypt_1.genHash(newPasswords);
+            console.log(hashedPassword);
+            yield User_1.default.findByIdAndUpdate(id, {
+                $set: {
+                    password: hashedPassword
+                }
+            }, { runValidators: true, new: true });
+            res.status(200).json('Password has changed');
         }
         catch (e) {
             res.status(400).json(e);

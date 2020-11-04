@@ -5,7 +5,7 @@ import {signToken} from '@/utils/jwt'
 import { genNumber } from '@/utils/Generate'
 import {compareHash} from '@/utils/bcrypt'
 import transporter from '@/plugin/nodemailer'
-const BASE_URL = process.env.BASE_URL || 'https://news.suzukilaos.com/ResetPassword'
+const BASE_URL = process.env.BASE_URL || 'https://admin.suzukilaos.com/resetpassword'
 const userController ={
     addUser: async(req: Request, res: Response) =>{
         const {
