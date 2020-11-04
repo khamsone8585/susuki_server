@@ -12,6 +12,6 @@ router.route('/admin-sign-in')
     .post(auth_1.adminLogin, userController_1.default.adminSignIn);
 router.route('/send-email')
     .post(userController_1.default.sendEmail);
-router.route('/reset-new-password')
+router.route('/reset-new-password/:id')
     .put(newPasswordController_1.default.changePasswordWhenLogin);
 exports.default = router;

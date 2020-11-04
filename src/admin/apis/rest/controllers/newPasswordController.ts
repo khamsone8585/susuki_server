@@ -39,7 +39,8 @@ const newPasswordController ={
     //     }
     // },
     changePasswordWhenLogin: async (req: Request, res: Response) => {
-            const { id, newPasswords, confirmPasswords } = req.body
+            const {newPasswords, confirmPasswords } = req.body
+            const {id}= req.params
             try {
                 const isMatch = newPasswords === confirmPasswords
                 if (!isMatch) return "Password doesn't match...!"

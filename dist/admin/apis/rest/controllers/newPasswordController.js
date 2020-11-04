@@ -49,7 +49,8 @@ const newPasswordController = {
     //     }
     // },
     changePasswordWhenLogin: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        const { id, newPasswords, confirmPasswords } = req.body;
+        const { newPasswords, confirmPasswords } = req.body;
+        const { id } = req.params;
         try {
             const isMatch = newPasswords === confirmPasswords;
             if (!isMatch)
