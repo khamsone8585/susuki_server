@@ -5,7 +5,7 @@ import {signToken} from '@/utils/jwt'
 import { genNumber } from '@/utils/Generate'
 import {compareHash} from '@/utils/bcrypt'
 import transporter from '@/plugin/nodemailer'
-const BASE_URL = process.env.BASE_URL || 'https://admin.suzukilaos.com/resetpassword'
+const BASE_URL = process.env.BASE_URL || 'https://admin.suzukilaos.com/resetpassword/'
 const userController ={
     addUser: async(req: Request, res: Response) =>{
         const {
@@ -96,6 +96,7 @@ const userController ={
         const {email}=req.body
         try{
             const sendMail:any = await users.findOne({email})
+            const userId:any = sendMail._id
             if(!sendMail) res.status(200).json('This is does not existed')
                 sendMail.email = transporter.sendMail({
                         from: 'new.suzuki.lao@gmail.com',
@@ -104,7 +105,7 @@ const userController ={
                         text : `
                         Thank you for using our service.
                         Your job(s) have been posted, Kindly refer to the link(s) below.
-                        ${process.env.BASE_URL}
+                        ${process.env.BASE_URL +'/'+ userId}
                         
                         Should you have any question please do not hesitate to contact us.
                         
