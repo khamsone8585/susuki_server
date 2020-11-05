@@ -42,10 +42,9 @@ const newPasswordController ={
             const {newPasswords, confirmPasswords } = req.body
             const {id}= req.params
             try {
-                const isMatch = newPasswords === confirmPasswords
-                if (!isMatch) return "Password doesn't match...!"
+                // const isMatch = newPasswords === confirmPasswords
+                // if (!isMatch) return "Password doesn't match...!"
                 const hashedPassword = genHash(newPasswords)
-                console.log(hashedPassword)
                     await users.findByIdAndUpdate(id, {
                         $set: {
                             password: hashedPassword

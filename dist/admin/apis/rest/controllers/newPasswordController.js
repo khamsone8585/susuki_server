@@ -52,11 +52,9 @@ const newPasswordController = {
         const { newPasswords, confirmPasswords } = req.body;
         const { id } = req.params;
         try {
-            const isMatch = newPasswords === confirmPasswords;
-            if (!isMatch)
-                return "Password doesn't match...!";
+            // const isMatch = newPasswords === confirmPasswords
+            // if (!isMatch) return "Password doesn't match...!"
             const hashedPassword = bcrypt_1.genHash(newPasswords);
-            console.log(hashedPassword);
             yield User_1.default.findByIdAndUpdate(id, {
                 $set: {
                     password: hashedPassword
