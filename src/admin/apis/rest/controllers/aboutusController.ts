@@ -1,5 +1,7 @@
 import {Request, Response} from 'express'
 import aboutUs from '@/model/aboutUs'
+
+//function CRUD aboutUs
 const aboutUsController = {
     addAboutUs: async(req: Request, res: Response)=>{
         const{detail}=req.body
