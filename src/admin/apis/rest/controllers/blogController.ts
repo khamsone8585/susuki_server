@@ -80,7 +80,7 @@ const blogController = {
             const counts=await Blogs.find({ title: { $regex: title, $options: "i" } }).countDocuments()
         res.status(200).json({Blog, counts})
         }catch(e){
-            throw new Error(e)
+            res.status(400).json(e)
         }
     }
 }

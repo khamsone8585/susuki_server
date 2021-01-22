@@ -78,8 +78,8 @@ const distributorController ={
                 populate: 'provinceId'
             })
             res.status(220).json({updateDistributors})
-        }catch(err){
-            throw new Error(err)
+        }catch(e){
+            res.status(400).json(e)
         }
     },
     deleteDistributor: async(req: Request, res: Response)=>{
@@ -100,7 +100,7 @@ const distributorController ={
             })
             res.status(200).json(findId)
         }catch(e){
-            throw new Error
+            res.status(400).json(e)
         }
     },
     getLimitDistributor: async(req: Request, res: Response)=>{
@@ -117,7 +117,7 @@ const distributorController ={
             const counts=await distributor.find().countDocuments()
         res.status(200).json({distributors, counts})
         }catch(e){
-            throw new Error(e)
+            res.status(400).json(e)
         }
     }
 }

@@ -1,6 +1,7 @@
 import {Request , Response} from 'express'
 import category from '@/model/Category'
 import User from '@/model/User'
+
 const categoryController ={
     addCategory: async(req: Request,res: Response)=>{
         const {

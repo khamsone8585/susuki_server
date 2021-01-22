@@ -67,7 +67,7 @@ const tagController = {
             const findId = await tag.findById(id)
             res.status(200).json(findId)
         }catch(e){
-            throw new Error
+            res.status(400).json(e)
         }
     },
     sortTag: async(req: Request, res: Response)=>{
