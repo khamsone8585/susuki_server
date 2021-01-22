@@ -15,7 +15,6 @@ import {isAuth} from './plugin/passport'
 
 //every push and build == true
 //offline == false
-
 const isProd = true
 if (isProd) {
     moduleAlias.addAliases({
@@ -102,7 +101,7 @@ class App {
             this.#app.use('/client/api', require(route).default)
         })
 
-
+        // seculity === isAuth
         const routePaths = __dirname + '/admin/apis/rest/routes/'
         fs.readdirSync(routePaths).map((file: string) => {
             const route = './admin/apis/rest/routes/' + file

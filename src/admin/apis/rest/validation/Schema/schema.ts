@@ -31,7 +31,7 @@ export const productsSchema = Joi.object({
     name: Joi.string().required(),
     price: Joi.number().required(),
     show: Joi.boolean().required(),
-    tagId: Joi.string().required(),
+    tagId: Joi.string(),
     info: Joi.array().items(
         Joi.object({
             key: Joi.string().required(),
