@@ -7,3 +7,5 @@ const transporter = nodemailer.createTransport({
     }
 })
 export default transporter
+
+//then do apppassword with google
